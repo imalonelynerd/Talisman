@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Talisman Web</title>
+    <link rel="icon" href="im/favicon.png">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="mainwin">
+    <img src="im/icon_color.png" alt="ICON">
+    <h1>Let's prepare the duel...</h1>
+    <p>Players's names</p>
+    <div id="namesc">
+        <label for="pl1">Player 1 name</label><input type="text" id="pl1" placeholder="Player 1"/>
+        <label for="pl2">Player 2 name</label><input type="text" id="pl2" placeholder="Player 2"/>
+    </div>
+    <p>Life Points (LP)</p>
+    <div id="lpc">
+        <button id="neg" onclick="neg()">-</button>
+        <label for="lp">Life points (LP)</label><input id="lp" type="number" value="8000" min="0" max="99999" step="100"
+                                                       placeholder="ex° : 8000" required>
+        <button id="pos" onclick="pos()">+</button>
+    </div>
+    <p>Timer type</p>
+    <div id="timerc">
+        <label for="chrono"><input type="radio" name="timertype" id="chrono" value="2"> Chronometer</label>
+        <label for="timer"><input type="radio" name="timertype" id="timer" value="1"> Timer</label>
+        <label for="nexus"><input type="radio" name="timertype" id="nexus" value="3"> Nexus-like</label>
+    </div>
+    <div id="timerconf">
+        <label for="timertime">Timer time</label><input id="timertime" type="number" min="0" max="99999" step="1" placeholder="Countdown">
+    </div>
+    <div id="nexusconf">
+        <label for="nexustime">Timer time</label><input id="nexustime" type="number" min="0" max="99999" step="1" placeholder="Player's time">
+        <label for="nexusbonus">Timer time</label><input id="nexusbonus" type="number" min="0" max="99999" step="1" placeholder="Added time">
+    </div>
+    <button onclick="setup()">Start the duel</button>
+    <script src="js/mainmgmt.js"></script>
+</div>
+</body>
+</html>

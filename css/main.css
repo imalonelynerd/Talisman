@@ -1,0 +1,98 @@
+body {
+    background: url("../im/bg.png") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    font-family: sans-serif;
+}
+
+#mainwin {
+    background: #101010;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    text-align: center;
+    width: 500px;
+    border-radius: 50px;
+}
+
+#mainwin * {
+    text-align: center;
+}
+
+#mainwin > img {
+    height: 128px;
+}
+
+#mainwin > p {
+    opacity: 0.5;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+#mainwin > div {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#mainwin > div > *:not(button) {
+    flex-grow: 1;
+}
+
+label:not(#timerc > *) {
+    display: none;
+}
+
+input[type=number], input[type=text], button {
+    background-color: #404040;
+    border: none;
+    padding: 12px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25), inset 0 4px 0 rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
+#namesc > input:first-of-type, #lpc > button:first-of-type, #nexusconf > input:first-of-type {
+    border-radius: 99px 0 0 99px;
+}
+
+#namesc > input:last-of-type, #lpc > button:last-of-type, #nexusconf > input:last-of-type {
+    border-radius: 0 99px 99px 0;
+}
+
+#lpc > input, #timerconf > input, #nexusconf > input {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+}
+
+#lpc > button {
+    font-weight: bolder;
+    font-size: 1em;
+    padding: 10px 15px;
+    margin: 0;
+}
+
+#mainwin > button {
+    border-radius: 99px;
+    background: #484acc;
+    font-weight: bolder;
+    transition: box-shadow 0.25s, transform 0.25s, background 0.25s;
+}
+
+#timerconf > input {
+    border-radius: 99px;
+}
+
+input, button {
+    transition: box-shadow 0.25s, transform 0.25s;
+}
+
+input:hover, button:hover {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.25), inset 0 0px 0 rgba(255, 255, 255, 0.25);
+    transform: translateY(2px);
+}
+
+#mainwin > button:hover {
+    background: #7678ED;
+}
