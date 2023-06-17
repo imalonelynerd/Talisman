@@ -17,10 +17,10 @@
     </div>
     <p>Life Points (LP)</p>
     <div id="lpc">
-        <button id="neg" onclick="neg()">-</button>
-        <label for="lp">Life points (LP)</label><input id="lp" type="number" value="8000" min="0" max="99999" step="100"
+        <button id="neg" onclick="add(true)">-</button>
+        <label for="lp">Life points (LP)</label><input id="lp" type="number" value="8000" min="100" max="99999" step="100"
                                                        placeholder="ex° : 8000" required>
-        <button id="pos" onclick="pos()">+</button>
+        <button id="pos" onclick="add(false)">+</button>
     </div>
     <p>Timer type</p>
     <div id="timerc">

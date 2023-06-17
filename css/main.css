@@ -78,6 +78,7 @@ input[type=number], input[type=text], button {
     background: #484acc;
     font-weight: bolder;
     transition: box-shadow 0.25s, transform 0.25s, background 0.25s;
+    margin-top: 10px;
 }
 
 #timerconf > input {
