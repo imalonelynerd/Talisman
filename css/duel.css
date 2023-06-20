@@ -5,7 +5,7 @@ body {
     font-family: sans-serif;
 }
 
-#mainwin {
+#mainwin, #calc {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -25,7 +25,7 @@ body {
     flex-direction: row;
 }
 
-#players > *, #tools {
+#players > *, #tools, #calc{
     background: #101010;
     border-radius: 50px;
     padding: 50px;
@@ -34,6 +34,12 @@ body {
 
 #players > *:not(:nth-of-type(2)) {
     flex-grow: 1;
+    transition: scale 0.25s, background 0.25s;
+}
+
+#players > *:not(:nth-of-type(2)):hover {
+    scale: 1.0125;
+    background: #303030;
 }
 
 #players > *:nth-of-type(2) {
@@ -204,4 +210,71 @@ input:hover, button:hover {
 
 #timerd > * {
     margin: 15px;
+}
+
+#keyb {
+    display: flex;
+    flex-direction: row;
+}
+
+#keyb > div:first-of-type {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#keyb > div:first-of-type > div{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+#keyb > div:first-of-type > div >*, #keyb > div:last-of-type > *{
+    flex-grow: 1;
+}
+
+#opem > * {
+    background-color: #303030;
+}
+
+#keyb > div:last-of-type {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#scr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#baselp{
+    opacity: 0.75;
+    font-size: 1.5em;
+}
+
+#scr > * {
+    margin: 5px;
+}
+
+#keyb button {
+    border-radius: 999px;
+    margin: 5px;
+}
+
+#calc {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+#calc > *{
+    flex-grow: 1;
+}
+
+#entr {
+    background-color: #484acc;
 }

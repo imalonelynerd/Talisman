@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/duel.css">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script>
-        if(localStorage.getItem("duel") === null) {
+        if (localStorage.getItem("duel") === null) {
             window.location.href = "../";
         }
         localStorage.removeItem("duel");
@@ -84,24 +84,41 @@
     </div>
 </div>
 <div id="calc">
-    <div>
-        <h1>9999</h1><h2>+</h2><h1>9999</h1><h2>=</h2><h1>9999</h1>
+    <div id="scr">
+        <h1 id="baselp">8000</h1>
+        <h2 id="ope">+</h2>
+        <h1 id="sub">0</h1>
+        <h2>=</h2>
+        <h1 id="res">8000</h1>
     </div>
-    <div>
+    <div id="keyb">
         <div>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
+            <div>
+                <button onclick="calcApp(1)">1</button>
+                <button onclick="calcApp(2)">2</button>
+                <button onclick="calcApp(3)">3</button>
+            </div>
+            <div>
+                <button onclick="calcApp(4)">4</button>
+                <button onclick="calcApp(5)">5</button>
+                <button onclick="calcApp(6)">6</button>
+            </div>
+            <div>
+                <button onclick="calcApp(7)">7</button>
+                <button onclick="calcApp(8)">8</button>
+                <button onclick="calcApp(9)">9</button>
+            </div>
+            <div>
+                <button onclick="calcReset()">C</button>
+                <button onclick="calcApp(0)">0</button>
+                <button id="entr">Enter</button>
+            </div>
         </div>
-        <div>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-        </div>
-        <div>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
+        <div id="opem">
+            <button onclick="calcOpe(1)">+</button>
+            <button onclick="calcOpe(2)">-</button>
+            <button onclick="calcOpe(3)">*</button>
+            <button onclick="calcOpe(4)">/</button>
         </div>
     </div>
 </div>

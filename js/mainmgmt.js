@@ -111,17 +111,16 @@ function setup() {
     gameconf.pl2name = pl2;
     gameconf.lp = lpv;
     gameconf.timer = timerconf;
-    //console.log(gameconf);
     return gameconf;
 }
 
 function start() {
     let setp = setup();
-    if(!setp) {
+    if (!setp) {
         return false;
     }
-    localStorage.setItem("duel","base");
-    localStorage.setItem("conf",JSON.stringify(setp));
+    localStorage.setItem("duel", "base");
+    localStorage.setItem("conf", JSON.stringify(setp));
     window.location.href = "duel";
     return true;
 }
@@ -132,17 +131,9 @@ function savePreset() {
         return false;
     }
     let element = document.createElement('a');
-    element.setAttribute('href',
-        'data:text/plain;charset=utf-8,'
-        + encodeURIComponent(JSON.stringify(setp)));
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(setp)));
     let date = new Date();
-    let datestr = date.getHours()
-        + ""
-        + date.getMinutes()
-        + "_"
-        + date.getDate()
-        + date.getMonth()
-        + date.getFullYear();
+    let datestr = date.getHours() + "" + date.getMinutes() + "_" + date.getDate() + date.getMonth() + date.getFullYear();
     element.setAttribute('download', "preset" + datestr + ".tal");
     element.style.display = 'none';
     document.body.appendChild(element);
@@ -150,8 +141,36 @@ function savePreset() {
     document.body.removeChild(element);
     return true;
 }
+
 //https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
 
 function startWPRestet() {
-    alert("Coming soon !")
+    let input = document.createElement('input');
+    input.type = 'file';
+
+    input.onchange = e => {
+        let file = e.target.files[0];
+        let isJsonString = function (str) {
+            try {
+                JSON.parse(str);
+            } catch (e) {
+                return false;
+            }
+            return true;
+        }
+        let reader = new FileReader();
+        reader.readAsText(file, 'UTF-8');
+        reader.onload = readerEvent => {
+            let content = readerEvent.target.result; // this is the content!
+            localStorage.setItem("duel", "base");
+            if (!isJsonString(content.toString())) {
+                alert("Invalid file type and/or content. Please try again");
+                return false;
+            }
+            localStorage.setItem("conf", content.toString());
+            window.location.href = "duel";
+            return true;
+        }
+    }
+    input.click();
 }

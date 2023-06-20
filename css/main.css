@@ -87,7 +87,6 @@ input[type=number], input[type=text], button {
     justify-content: center;
 }
 
-
 #masterbuttons > button {
     border-radius: 99px;
     font-weight: bolder;

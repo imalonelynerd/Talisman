@@ -1,6 +1,7 @@
 let duelConf = localStorage.getItem("conf");
 localStorage.removeItem("conf");
 let duelConfObj = JSON.parse(duelConf);
+$("#calc").hide();
 
 function toClock(time) {
     let mn = Math.floor(time / 60);
@@ -39,9 +40,9 @@ switch (duelConfObj.timer.choice) {
         $("#pause").attr("onclick", "timer()");
         break;
     case "3":
-        $("#timer").html("Click on how should play first");
+        $("#timer").html("Click on who should play first");
         $("#timerm").html("-");
-        $("#pause").attr("onclick", "nexus()");
+        $("#pause").attr("onclick", "");
         $("#p1time").html(duelConfObj.timer.time);
         $("#p2time").html(duelConfObj.timer.time);
         $("#p1").attr("onclick","playerRound(1)");
