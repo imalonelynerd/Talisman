@@ -33,7 +33,10 @@ body {
 
 #mainwin > div {
     display: flex;
-    margin-bottom: 20px;
+}
+
+#mainwin > div:not(:last-of-type) {
+    margin-bottom: 30px;
 }
 
 #mainwin > div > *:not(button) {
@@ -50,6 +53,12 @@ input[type=number], input[type=text], button {
     padding: 12px;
     box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25), inset 0 4px 0 rgba(255, 255, 255, 0.25);
     color: white;
+}
+
+#namesc, #lpc, #nexusconf, #timerconf {
+    background-color: #404040;
+    border-radius: 999px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25), inset 0 4px 0 rgba(255, 255, 255, 0.25);
 }
 
 #namesc > input:first-of-type, #lpc > button:first-of-type, #nexusconf > input:first-of-type {
@@ -73,12 +82,21 @@ input[type=number], input[type=text], button {
     margin: 0;
 }
 
-#mainwin > button {
+#masterbuttons {
+    align-items: center;
+    justify-content: center;
+}
+
+
+#masterbuttons > button {
     border-radius: 99px;
-    background: #484acc;
     font-weight: bolder;
     transition: box-shadow 0.25s, transform 0.25s, background 0.25s;
-    margin-top: 10px;
+    margin: auto 5px;
+}
+
+#masterbuttons > button:last-of-type {
+    background: #484acc;
 }
 
 #timerconf > input {
@@ -86,14 +104,16 @@ input[type=number], input[type=text], button {
 }
 
 input, button {
-    transition: box-shadow 0.25s, transform 0.25s;
+    transition: scale 0.25s, border-radius 0.25s, background-color 0.25s;
 }
 
 input:hover, button:hover {
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.25), inset 0 0px 0 rgba(255, 255, 255, 0.25);
-    transform: translateY(2px);
+    background: #606060;
+    scale: 1.1 !important;
+    border-radius: 999px !important;
+    z-index: 99;
 }
 
-#mainwin > button:hover {
+#masterbuttons > button:last-of-type:hover {
     background: #7678ED;
 }

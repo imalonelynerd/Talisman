@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="A stupid simple, yet elegant YuGiOh! companion app.">
+    <meta property="og:image" content="%PUBLIC_HTML%/im/banner.png" />
     <title>Talisman Web</title>
     <link rel="icon" href="im/favicon.png">
     <link rel="stylesheet" href="css/main.css">
+    <script defer src="js/mainmgmt.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </head>
 <body>
 <div id="mainwin">
@@ -18,25 +22,28 @@
     <p>Life Points (LP)</p>
     <div id="lpc">
         <button id="neg" onclick="add(true)">-</button>
-        <label for="lp">Life points (LP)</label><input id="lp" type="number" value="8000" min="100" max="99999" step="100"
+        <label for="lp">Life points (LP)</label><input id="lp" type="number" value="8000" min="100" max="99999" step="1000"
                                                        placeholder="ex° : 8000" required>
         <button id="pos" onclick="add(false)">+</button>
     </div>
     <p>Timer type</p>
     <div id="timerc">
-        <label for="chrono"><input type="radio" name="timertype" id="chrono" value="2"> Chronometer</label>
-        <label for="timer"><input type="radio" name="timertype" id="timer" value="1"> Timer</label>
+        <label for="chrono"><input type="radio" name="timertype" id="chrono" value="1" checked> Chronometer</label>
+        <label for="timer"><input type="radio" name="timertype" id="timer" value="2"> Timer</label>
         <label for="nexus"><input type="radio" name="timertype" id="nexus" value="3"> Nexus-like</label>
     </div>
     <div id="timerconf">
-        <label for="timertime">Timer time</label><input id="timertime" type="number" min="0" max="99999" step="1" placeholder="Countdown">
+        <label for="timertime">Timer time</label><input id="timertime" type="number" min="10" max="99999" step="1" placeholder="Countdown">
     </div>
     <div id="nexusconf">
-        <label for="nexustime">Timer time</label><input id="nexustime" type="number" min="0" max="99999" step="1" placeholder="Player's time">
-        <label for="nexusbonus">Timer time</label><input id="nexusbonus" type="number" min="0" max="99999" step="1" placeholder="Added time">
+        <label for="nexustime">Timer time</label><input id="nexustime" type="number" min="10" max="99999" step="1" placeholder="Player's time">
+        <label for="nexusbonus">Timer time</label><input id="nexusbonus" type="number" min="10" max="99999" step="1" placeholder="Added time">
     </div>
-    <button onclick="setup()">Start the duel</button>
-    <script src="js/mainmgmt.js"></script>
+    <div id="masterbuttons">
+        <button onclick="savePreset()">Save the preset</button>
+        <button onclick="startWPRestet()">Play with preset</button>
+        <button onclick="start()">Start the duel</button>
+    </div>
 </div>
 </body>
 </html>

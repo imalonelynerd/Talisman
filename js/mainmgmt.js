@@ -1,8 +1,8 @@
 function add(isneg) {
-    let lpcompt = document.getElementById("lp");
-    let addval = parseInt(lpcompt.getAttribute("step"));
+    let lpcompt = $("#lp");
+    let addval = parseInt(lpcompt.attr("step"));
     addval *= isneg ? 1 : -1;
-    lpcompt.value -= addval;
+    lpcompt.val(lpcompt.val() - addval);
     return reeditLP();
 }
 
@@ -10,56 +10,148 @@ function reeditLP() {
     reeditVal("lp");
 }
 
+function checkVal(id) {
+    let lpcompt = $("#" + id);
+    let minv = parseInt(lpcompt.attr("min"));
+    let maxv = parseInt(lpcompt.attr("max"));
+    if (lpcompt.val() === "" || lpcompt.val() < minv) {
+        return -1;
+    }
+    if (lpcompt.val() > maxv) {
+        return 1;
+    }
+    return 0;
+}
+
 function reeditVal(id) {
-    let lpcompt = document.getElementById(id);
-    let minv = parseInt(lpcompt.getAttribute("min"));
-    let maxv = parseInt(lpcompt.getAttribute("max"));
-    if (lpcompt.value < minv) {
-        lpcompt.value = minv;
+    let lpcompt = $("#" + id);
+    let minv = parseInt(lpcompt.attr("min"));
+    let maxv = parseInt(lpcompt.attr("max"));
+    let res = checkVal(id);
+    if (res < 0) {
+        lpcompt.val(minv);
         return false;
     }
-    if (lpcompt.value > maxv) {
-        lpcompt.value = maxv;
+    if (res > 0) {
+        lpcompt.val(maxv);
         return false;
     }
     return true;
 }
 
-document.getElementById("lp").addEventListener("blur", reeditLP);
+$("#lp").on("blur", reeditLP);
 
-document.getElementById("timerconf").style.display = "none";
-document.getElementById("nexusconf").style.display = "none";
+$("#timerconf").hide();
+$("#nexusconf").hide();
 
-document.getElementById("chrono").addEventListener("click", function () {
-    document.getElementById("timerconf").style.display = "none";
-    document.getElementById("nexusconf").style.display = "none";
+$("#chrono").on("click", function () {
+    $("#timerconf").hide();
+    $("#nexusconf").hide();
 });
 
 document.getElementById("timer").addEventListener("click", function () {
-    document.getElementById("timerconf").style.display = "flex";
-    document.getElementById("nexusconf").style.display = "none";
+    $("#timerconf").show();
+    $("#nexusconf").hide();
 });
 
 document.getElementById("nexus").addEventListener("click", function () {
-    document.getElementById("timerconf").style.display = "none";
-    document.getElementById("nexusconf").style.display = "flex";
+    $("#timerconf").hide();
+    $("#nexusconf").show();
 });
 
 function setup() {
-    let pl1 = document.getElementById("pl1").value;
+    let pl1 = $("#pl1").val();
     if (pl1 === "" || pl1 === undefined) {
         pl1 = "Player 1";
     }
-    let pl2 = document.getElementById("pl2").value;
+    let pl2 = $("#pl2").val();
     if (pl2 === "" || pl2 === undefined) {
-        pl2 = "Player 1";
+        pl2 = "Player 2";
     }
-    let lp = document.getElementById("lp");
-    let lpv = lp.value;
-    let lpmx = lp.getAttribute("max");
-    let lpmn = lp.getAttribute("min");
-    if (lpv < lpmn || lpv > lpmx) {
+
+    if (checkVal("lp") !== 0) {
         alert("Error : incorrect LP values. Please, try again.");
         return false;
     }
+    let lpv = $("#lp").val();
+
+    let timerconf = {};
+
+    timerconf.choice = 1;
+
+    $("input[name='timertype']").each(function () {
+        if (this.checked) {
+            timerconf.choice = this.value;
+        }
+    })
+
+
+    switch (timerconf.choice) {
+        case "2":
+            if (checkVal("timertime") !== 0) {
+                alert("Error : incorrect timer value. Please, try again.");
+                return false;
+            }
+            timerconf.countdown = $("#timertime").val();
+            break;
+        case "3":
+            if (checkVal("nexustime") !== 0 || checkVal("nexusbonus") !== 0) {
+                alert("Error : incorrect countdown values. Please, try again.");
+                return false;
+            }
+            timerconf.time = $("#nexustime").val();
+            timerconf.bonus = $("#nexusbonus").val();
+            break;
+        default:
+            break;
+    }
+
+    let gameconf = {};
+    gameconf.pl1name = pl1;
+    gameconf.pl2name = pl2;
+    gameconf.lp = lpv;
+    gameconf.timer = timerconf;
+    //console.log(gameconf);
+    return gameconf;
+}
+
+function start() {
+    let setp = setup();
+    if(!setp) {
+        return false;
+    }
+    localStorage.setItem("duel","base");
+    localStorage.setItem("conf",JSON.stringify(setp));
+    window.location.href = "duel";
+    return true;
+}
+
+function savePreset() {
+    let setp = setup();
+    if (!setp) {
+        return false;
+    }
+    let element = document.createElement('a');
+    element.setAttribute('href',
+        'data:text/plain;charset=utf-8,'
+        + encodeURIComponent(JSON.stringify(setp)));
+    let date = new Date();
+    let datestr = date.getHours()
+        + ""
+        + date.getMinutes()
+        + "_"
+        + date.getDate()
+        + date.getMonth()
+        + date.getFullYear();
+    element.setAttribute('download', "preset" + datestr + ".tal");
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    return true;
+}
+//https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
+
+function startWPRestet() {
+    alert("Coming soon !")
 }
