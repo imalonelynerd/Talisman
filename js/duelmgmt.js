@@ -32,6 +32,7 @@ function tossCoin() {
 function updateLP(pl) {
     $("#mainwin").hide();
     $("#baselp").html($("#p" + pl + "lp").html());
+    calcUpdate();
     console.log("#p" + pl + "lp");
     $("#entr").attr("onclick", "calcApply(" + pl + ")");
     $("#calc").show();
@@ -184,14 +185,13 @@ function calcApply(pl) {
     $("#mainwin").show();
     $("#sub").html("0");
     $("#ope").html("+");
-    $("#res").html("0");
     calcUpdate();
 }
 
 function loseCond(winner, lpw, lpl, time, reason) {
     let win = {};
     localStorage.setItem("win", "base");
-    win.winner = winner;
+    win.winner = lpw === lpl ? null : winner;
     win.lpw = lpw;
     win.lpl = lpl;
     win.time = time;
