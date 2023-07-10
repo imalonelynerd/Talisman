@@ -38,6 +38,7 @@ function updateLP(pl) {
     $("#calc").show();
 }
 
+// noinspection JSUnusedGlobalSymbols
 function timer() {
     let inter = setInterval(function () {
         let t = $("#timer").html();

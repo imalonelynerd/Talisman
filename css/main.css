@@ -1,118 +1,263 @@
-body {
-    background: url("../im/bg.png") no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    font-family: sans-serif;
+@import "vars.css";
+
+@media only screen and (min-width: 769px) and (orientation: landscape) {
+    body {
+        background: var(--bg) no-repeat center center fixed;
+        background-size: cover;
+        color: var(--text-color);
+        font-family: sans-serif;
+    }
+
+    #mainwin {
+        background: var(--bg-color);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 50px;
+        text-align: center;
+        width: 500px;
+        border-radius: 50px;
+    }
+
+    #mainwin * {
+        text-align: center;
+    }
+
+    #mainwin > img {
+        height: 128px;
+    }
+
+    #mainwin > p {
+        opacity: 0.5;
+        font-size: 0.9em;
+        margin-bottom: 5px;
+    }
+
+    #mainwin > div {
+        display: flex;
+    }
+
+    #mainwin > div:not(:last-of-type) {
+        margin-bottom: 30px;
+    }
+
+    #mainwin > div > *:not(button) {
+        flex-grow: 1;
+    }
+
+    label:not(#timerc > *) {
+        display: none;
+    }
+
+    input[type=number], input[type=text], button {
+        background-color: var(--input-color);
+        border: none;
+        padding: 12px;
+        box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25), inset 0 4px 0 rgba(255, 255, 255, 0.25);
+        color: var(--text-color);
+    }
+
+    #namesc, #lpc, #nexusconf, #timerconf {
+        background-color: var(--input-color);
+        border-radius: 9999px;
+        box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25), inset 0 4px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    #namesc > input:first-of-type, #lpc > button:first-of-type, #nexusconf > input:first-of-type {
+        border-radius: 999px 0 0 999px;
+    }
+
+    #namesc > input:last-of-type, #lpc > button:last-of-type, #nexusconf > input:last-of-type {
+        border-radius: 0 999px 999px 0;
+    }
+
+    #lpc > input, #timerconf > input, #nexusconf > input {
+        -webkit-appearance: none;
+        margin: 0;
+        -moz-appearance: textfield;
+    }
+
+    #lpc > button {
+        font-weight: bolder;
+        font-size: 1em;
+        padding: 10px 15px;
+        margin: 0;
+    }
+
+    #masterbuttons {
+        align-items: center;
+        justify-content: center;
+    }
+
+    #masterbuttons > button {
+        border-radius: 999px;
+        font-weight: bolder;
+        transition: box-shadow 0.25s, transform 0.25s, background 0.25s;
+        margin: auto 5px;
+    }
+
+    #masterbuttons > button:last-of-type {
+        background: var(--highlight-color);
+    }
+
+    #timerconf > input {
+        border-radius: 999px;
+    }
+
+    input, button {
+        transition: /*scale 0.25s, border-radius 0.25s,*/ background-color 0.25s;
+    }
+
+    input:hover, button:hover {
+        background: var(--input-hover-color);
+        /*scale: 1.1 !important;*/
+        /*border-radius: 9999px !important;*/
+        z-index: 999;
+    }
+
+    #masterbuttons > button:last-of-type:hover {
+        background: var(--highlight-hover-color);
+    }
 }
 
-#mainwin {
-    background: #101010;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 50px;
-    text-align: center;
-    width: 500px;
-    border-radius: 50px;
-}
+@media only screen and (max-width: 768px), (orientation: portrait) {
+    body {
+        background: var(--bg) no-repeat center center fixed;
+        background-size: cover;
+        color: var(--text-color);
+        font-family: sans-serif;
+        font-size: 2vh;
+    }
 
-#mainwin * {
-    text-align: center;
-}
+    #mainwin {
+        margin: 2vh auto;
+        background: var(--bg-color);
+        padding: 2vh;
+        text-align: center;
+        width: 84vw;
+        height: 92vh;
+        border-radius: 2vh;
+        overflow: scroll;
+    }
 
-#mainwin > img {
-    height: 128px;
-}
+    #mainwin * {
+        text-align: center;
+    }
 
-#mainwin > p {
-    opacity: 0.5;
-    font-size: 0.9em;
-    margin-bottom: 5px;
-}
+    #mainwin > img {
+        height: 30vw;
+    }
 
-#mainwin > div {
-    display: flex;
-}
+    #mainwin > p {
+        opacity: 0.5;
+        font-size: 0.9em;
+        margin-bottom: 0.5vh;
+    }
 
-#mainwin > div:not(:last-of-type) {
-    margin-bottom: 30px;
-}
+    #mainwin > div {
+        display: flex;
+    }
 
-#mainwin > div > *:not(button) {
-    flex-grow: 1;
-}
+    #mainwin > div:not(:last-of-type) {
+        margin-bottom: 2vh;
+    }
 
-label:not(#timerc > *) {
-    display: none;
-}
+    #mainwin > div > *:not(button) {
+        flex-grow: 1;
+    }
 
-input[type=number], input[type=text], button {
-    background-color: #404040;
-    border: none;
-    padding: 12px;
-    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25), inset 0 4px 0 rgba(255, 255, 255, 0.25);
-    color: white;
-}
+    label:not(#timerc > *) {
+        display: none;
+    }
 
-#namesc, #lpc, #nexusconf, #timerconf {
-    background-color: #404040;
-    border-radius: 999px;
-    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25), inset 0 4px 0 rgba(255, 255, 255, 0.25);
-}
+    input[type=number], input[type=text], button {
+        background-color: var(--input-color);
+        border: none;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        font-size: 1.5vh;
+        /*box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25), inset 0 4px 0 rgba(255, 255, 255, 0.25);*/
+        color: var(--text-color);
+    }
 
-#namesc > input:first-of-type, #lpc > button:first-of-type, #nexusconf > input:first-of-type {
-    border-radius: 99px 0 0 99px;
-}
+    #lpc, #namesc {
+        display: flex;
+        flex-direction: column;
+    }
 
-#namesc > input:last-of-type, #lpc > button:last-of-type, #nexusconf > input:last-of-type {
-    border-radius: 0 99px 99px 0;
-}
+    #lpc > button:first-of-type, #namesc > input:first-of-type{
+        border-radius: 2vh 2vh 0 0;
+    }
 
-#lpc > input, #timerconf > input, #nexusconf > input {
-    -webkit-appearance: none;
-    margin: 0;
-    -moz-appearance: textfield;
-}
+    #lpc > button:last-of-type, #namesc > input:last-of-type {
+        border-radius: 0 0 2vh 2vh;
+    }
 
-#lpc > button {
-    font-weight: bolder;
-    font-size: 1em;
-    padding: 10px 15px;
-    margin: 0;
-}
+    #namesc, #lpc, #nexusconf, #timerconf {
+        background-color: var(--input-color);
+        border-radius: 2vh;
+    }
 
-#masterbuttons {
-    align-items: center;
-    justify-content: center;
-}
+    #lpc > input, #timerconf > input, #nexusconf > input {
+        -webkit-appearance: none;
+        margin: 0;
+        -moz-appearance: textfield;
+    }
 
-#masterbuttons > button {
-    border-radius: 99px;
-    font-weight: bolder;
-    transition: box-shadow 0.25s, transform 0.25s, background 0.25s;
-    margin: auto 5px;
-}
+    #lpc > button {
+        font-weight: bolder;
+        font-size: 1em;
+        padding: 10px 15px;
+        margin: 0;
+    }
 
-#masterbuttons > button:last-of-type {
-    background: #484acc;
-}
+    #masterbuttons {
+        align-items: stretch;
+        justify-content: center;
+    }
 
-#timerconf > input {
-    border-radius: 99px;
-}
+    #masterbuttons > button {
+        flex-grow: 1;
+        font-weight: bolder;
+        transition: box-shadow 0.25s, transform 0.25s, background 0.25s;
+        margin: auto 5px;
+    }
 
-input, button {
-    transition: scale 0.25s, border-radius 0.25s, background-color 0.25s;
-}
+    #masterbuttons > button:last-of-type {
+        background: var(--highlight-color);
+    }
 
-input:hover, button:hover {
-    background: #606060;
-    scale: 1.1 !important;
-    border-radius: 999px !important;
-    z-index: 99;
-}
+    #nexusconf > input:first-of-type, #masterbuttons > button:first-of-type {
+        border-radius: 2vh 0 0 2vh;
+    }
 
-#masterbuttons > button:last-of-type:hover {
-    background: #7678ED;
+    #nexusconf > input:last-of-type, #masterbuttons > button:last-of-type {
+        border-radius: 0 2vh 2vh 0;
+    }
+
+    #timerc input {
+        border: none;
+        width: 100%;
+        height: 2vh;
+    }
+
+    #timerconf > input {
+        border-radius: 9999px;
+    }
+
+    input, button {
+        transition: /*scale 0.25s, border-radius 0.25s,*/ background-color 0.25s;
+    }
+
+    input:hover, button:hover {
+        background: var(--input-hover-color);
+        /*scale: 1.1 !important;*/
+        /*border-radius: 9999px !important;*/
+        z-index: 999;
+    }
+
+    #masterbuttons > button:last-of-type:hover {
+        background: var(--highlight-hover-color);
+    }
 }
