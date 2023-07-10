@@ -49,15 +49,26 @@ $("#chrono").on("click", function () {
     $("#nexusconf").hide();
 });
 
-document.getElementById("timer").addEventListener("click", function () {
-    $("#timerconf").show();
-    $("#nexusconf").hide();
-});
+function swichSettings() {
+    switch ($("#timertype").val()) {
+        case "2":
+            $("#timerconf").show();
+            $("#nexusconf").hide();
+            break;
+        case "3":
+            $("#timerconf").hide();
+            $("#nexusconf").show();
+            break;
+        default:
+            $("#timerconf").hide();
+            $("#nexusconf").hide();
+            break;
+    }
+}
 
-document.getElementById("nexus").addEventListener("click", function () {
-    $("#timerconf").hide();
-    $("#nexusconf").show();
-});
+swichSettings();
+
+$("#timertype").on("change", swichSettings);
 
 function setup() {
     let pl1 = $("#pl1").val();
@@ -77,14 +88,7 @@ function setup() {
 
     let timerconf = {};
 
-    timerconf.choice = 1;
-
-    $("input[name='timertype']").each(function () {
-        if (this.checked) {
-            timerconf.choice = this.value;
-        }
-    })
-
+    timerconf.choice = $("#timertype").val();
 
     switch (timerconf.choice) {
         case "2":
