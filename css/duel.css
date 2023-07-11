@@ -1,4 +1,4 @@
-@import "vars.css";
+@import "base.css";
 @import "calc.css";
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
@@ -15,6 +15,7 @@
         font-family: sans-serif;
         font-size: 2vh;
         text-align: center;
+        animation: Hewwo 1s;
     }
 
     #mainwin {
@@ -246,6 +247,7 @@
         font-family: sans-serif;
         font-size: 2vh;
         text-align: center;
+        animation: Hewwo 1s;
     }
 
     #p1 {
@@ -254,6 +256,7 @@
         top: 0;
         left: 0;
         right: 0;
+        border-radius: 0 0 2vh 2vh;
     }
 
     #p2 {
@@ -262,6 +265,7 @@
         bottom: 0;
         left: 0;
         right: 0;
+        border-radius: 2vh 2vh 0 0;
     }
 
     #players > div {
@@ -302,8 +306,8 @@
     #timerd {
         background: var(--bg-color);
         position: absolute;
-        left: 0;
-        right: 0;
+        left: 2vh;
+        right: 2vh;
         top: 50%;
         height: 26%;
         transform: translate(0,-50%);
@@ -311,6 +315,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        border-radius: 2vh;
     }
 
     #timerd h2 {

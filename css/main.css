@@ -1,4 +1,4 @@
-@import "vars.css";
+@import "base.css";
 
 @media only screen and (min-width: 769px) and (orientation: landscape) {
     body {
@@ -9,6 +9,9 @@
         overflow: hidden;
         color: var(--text-color);
         font-family: sans-serif;
+        font-size: 2vh;
+        margin: 0;
+        animation: Hewwo 1s;
     }
 
     #mainwindow {
@@ -21,12 +24,13 @@
         align-items: center;
         justify-content: center;
         background: var(--bg-color);
-        padding: 0 10vh;
+        padding: 0 5vw;
+        width: 25vw;
         overflow: scroll;
     }
 
     #mainwindow > img {
-        height: 128px;
+        height: 10vw;
     }
 
     #mainwindow > p {
@@ -39,6 +43,7 @@
         flex-direction: row;
         width: 100%;
         margin-bottom: 4vh;
+        overflow: scroll;
     }
 
     #mainwindow > div > * {
@@ -46,8 +51,9 @@
     }
 
     input, select, button {
-        height: 50px;
+        height: 6vh;
         padding: 0;
+        font-size: 1.75vh;
         text-align: center;
         color: var(--text-color);
         border: none;
@@ -55,6 +61,11 @@
         -webkit-appearance: textfield;
         -moz-appearance: textfield;
         transition: background 0.25s;
+    }
+
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
     }
 
     input:hover, select:hover, button:hover {
@@ -103,6 +114,7 @@
     }
 
     #mainwindow {
+        border-radius: 2vh 2vh 0 0;
         position: absolute;
         top: 5vh;
         left: 0;
@@ -116,7 +128,7 @@
     }
 
     #mainwindow > img {
-        height: 40vw;
+        width: 40vw;
     }
 
     #mainwindow > p {
@@ -146,6 +158,11 @@
         -webkit-appearance: textfield;
         -moz-appearance: textfield;
         transition: background 0.25s;
+    }
+
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
     }
 
     input:hover, select:hover, button:hover {
