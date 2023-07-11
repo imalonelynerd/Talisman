@@ -21,38 +21,15 @@
 <div id="parallax"></div>
 <div id="mainwindow">
     <img src="../im/icon_color.png" alt="ICON">
-    <h1>Let's prepare the duel...</h1>
-    <p>Players's names</p>
-    <div id="playersnames">
-        <input class="first-elem" type="text" id="pl1" placeholder="Player 1"/>
-        <input class="last-elem" type="text" id="pl2" placeholder="Player 2"/>
-    </div>
-    <p>Life Points (LP)</p>
-    <div id="lifepoints">
-        <button class="first-elem" id="less" onclick="add(true)">-</button>
-        <input id="lp" type="number" value="8000" min="100" max="99999" step="1000" placeholder="ex° : 8000" required>
-        <button class="last-elem" id="more" onclick="add(false)">+</button>
-    </div>
-    <p>Timer type</p>
-    <div id="timer">
-        <select class="round-elem" name="timertype" id="timertype">
-            <option value="1" selected="selected">Chronometer</option>
-            <option value="2">Timer</option>
-            <option value="3">Nexus-like</option>
-        </select>
-    </div>
-    <div id="timerconf">
-        <input id="timertime" class="round-elem" type="number" min="10" max="99999" step="1" placeholder="Countdown">
-    </div>
-    <div id="nexusconf">
-        <input id="nexustime" class="first-elem" type="number" min="10" max="99999" step="1"
-               placeholder="Player's time">
-        <input id="nexusbonus" class="last-elem" type="number" min="10" max="99999" step="1" placeholder="Added time">
-    </div>
+    <h1 id="winner">Congrats, Player !</h1>
+    <p>Reason</p>
+    <h2 id="reason">K.O.</h2>
+    <p>Time</p>
+    <h2 id="time">00</h2>
+    <p>LPs</p>
+    <h2 id="lps">8000 <span>/ 0</span> (Ratio : 0)</h2>
     <div id="buttons">
-        <button class="round-elem" onclick="savePreset()">Save the preset</button>
-        <button class="round-elem" onclick="startWPRestet()">Play with preset</button>
-        <button class="round-elem highlight" onclick="start()">Start the duel</button>
+        <button class="round-elem highlight" onclick="window.location.href = '../';">Restart</button>
     </div>
 </div>
 </body>

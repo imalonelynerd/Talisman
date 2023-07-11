@@ -33,6 +33,7 @@ switch (duelConfObj.timer.choice) {
     case "2":
         $("#timer").html(duelConfObj.timer.countdown);
         $("#timerm").html(toClock(duelConfObj.timer.countdown));
+        localStorage.setItem("timer",duelConfObj.timer.countdown);
         $("#addt").remove();
         $("#sw").remove();
         $("#p1time").remove();

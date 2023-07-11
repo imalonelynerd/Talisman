@@ -47,10 +47,12 @@ function timer() {
             let pl2lp = $("#pl2lp").html();
             let g = pl1lp > pl2lp ? 1:2;
             let opppl = g === 1 ? 2 : 1;
+            let timer = localStorage.getItem("timer");
+            localStorage.removeItem("timer");
             loseCond($("#p" + g + "name").html(),
                 $("#p" + g + "lp").html(),
                 $("#p" + opppl + "lp").html(),
-                $("#timer").html(),
+                timer,
                 "Time out"
             );
         }
@@ -96,9 +98,9 @@ function nexus() {
         }
         $("#p" + playerR + "time").html(t - 1);
     }, 1000);
-    $("#p" + playerR + "time").css("background", "#DF5000");
+    $("#p" + playerR + "time").css("background", "var(--highlight-hover-color)");
     let opppl = playerR === 1 ? 2 : 1
-    $("#p" + opppl + "time").css("background", "#404040");
+    $("#p" + opppl + "time").css("background", "var(--input-color)");
     $("#pausei").attr("src", "../im/tools/pause.png");
     $("#pause").attr("onclick", "pauseTimer(" + inter + ",'nexus')");
     $("#sw").attr("onclick","switchPlayer()");
@@ -112,9 +114,9 @@ function addTime() {
 
 function switchPlayer() {
     playerR = playerR === 1 ? 2 : 1;
-    $("#p" + playerR + "time").css("background", "#DF5000");
+    $("#p" + playerR + "time").css("background", "var(--highlight-hover-color)");
     let opppl = playerR === 1 ? 2 : 1
-    $("#p" + opppl + "time").css("background", "#404040");
+    $("#p" + opppl + "time").css("background", "var(--input-color)");
 }
 
 function calcApp(e) {
@@ -177,10 +179,16 @@ function calcApply(pl) {
     $("#p" + pl + "lp").html($("#res").html());
     if (parseInt($("#res").html()) <= 0) {
         let opppl = pl === 1 ? 2 : 1;
+        let timer = $("#timer").html();
+        if(localStorage.getItem("timer") !== null) {
+            timer = localStorage.getItem("timer");
+            localStorage.removeItem("timer");
+            timer -= $("#timer").html();
+        }
         loseCond($("#p" + opppl + "name").html(),
                 $("#p" + opppl + "lp").html(),
                 $("#p" + pl + "lp").html(),
-                $("#timer").html(),
+                timer,
                 "K. O."
         );
     }
@@ -193,13 +201,15 @@ function calcApply(pl) {
 
 function loseCond(winner, lpw, lpl, time, reason) {
     let win = {};
-    localStorage.setItem("win", "base");
-    win.winner = lpw === lpl ? null : winner;
+    win.winner = (lpw === lpl) ? null : winner;
     win.lpw = lpw;
     win.lpl = lpl;
     win.time = time;
     win.reason = reason;
-    localStorage.setItem("win",JSON.stringify(win));
+    localStorage.setItem("win","base");
+    localStorage.setItem("winfo",JSON.stringify(win));
     window.location.href = "../win";
+    console.log(win);
+    console.log(JSON.stringify((win)));
     return true;
 }

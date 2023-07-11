@@ -27,6 +27,7 @@
         padding: 0 5vw;
         width: 25vw;
         overflow: scroll;
+        text-align: center;
     }
 
     #mainwindow > img {
