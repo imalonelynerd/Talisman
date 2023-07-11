@@ -101,6 +101,8 @@ function nexus() {
     $("#p" + opppl + "time").css("background", "#404040");
     $("#pausei").attr("src", "../im/tools/pause.png");
     $("#pause").attr("onclick", "pauseTimer(" + inter + ",'nexus')");
+    $("#sw").attr("onclick","switchPlayer()");
+    $("#addt").attr("onclick","addTime()")
 }
 
 function addTime() {

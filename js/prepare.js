@@ -40,9 +40,12 @@ switch (duelConfObj.timer.choice) {
         $("#pause").attr("onclick", "timer()");
         break;
     case "3":
-        $("#timer").html("Click on who should play first");
+        alert("Click on who should play first !");
+        $("#timer").html("-");
         $("#timerm").html("-");
         $("#pause").attr("onclick", "");
+        /*$("#sw").attr("onclick","");
+        $("#addt").attr("onclick","")*/
         $("#p1time").html(duelConfObj.timer.time);
         $("#p2time").html(duelConfObj.timer.time);
         $("#p1").attr("onclick","playerRound(1)");

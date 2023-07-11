@@ -22,6 +22,7 @@
         justify-content: center;
         background: var(--bg-color);
         padding: 0 10vh;
+        overflow: scroll;
     }
 
     #mainwindow > img {
@@ -95,8 +96,6 @@
     body {
         background: var(--bg) no-repeat center;
         background-size: cover;
-        height: 100vh;
-        width: 100vw;
         overflow-x: hidden;
         color: var(--text-color);
         font-family: sans-serif;
@@ -113,7 +112,7 @@
         align-items: center;
         justify-content: flex-start;
         background: var(--bg-color);
-        padding: 2vh 5vh 0;
+        padding: 5vh 5vh 0;
     }
 
     #mainwindow > img {

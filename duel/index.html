@@ -44,41 +44,41 @@
                 <button id="pause">
                     <img src="../im/tools/play.png" alt="Play/Pause" id="pausei">
                 </button>
-                <button id="addt" onclick="addTime()">
+                <button id="addt">
                     <img src="../im/tools/add.png" alt="Add Time">
                 </button>
-                <button id="sw" onclick="switchPlayer()">
+                <button id="sw">
                     <img src="../im/tools/sw.png" alt="Switch Player">
                 </button>
             </div>
         </div>
         <div id="accessories">
-            <button onclick="rollDice()" id="dicem">
+            <button class="first-elem" onclick="rollDice()" id="dicem">
                 <img id="dice" src="../im/tools/d.png" alt="dice">
                 <p id="dicet" class="tag">Click to roll</p>
             </button>
-            <button onclick="tossCoin()" id="coinm">
+            <button class="last-elem" onclick="tossCoin()" id="coinm">
                 <img id="coin" src="../im/tools/c.png" alt="coin">
                 <p id="coint" class="tag">Click to toss</p>
             </button>
         </div>
         <div id="notebook">
             <div>
-                <input type="text" placeholder="Counter 1">
-                <input type="number" min="0" step="1" placeholder="1234">
+                <input class="tl" type="text" placeholder="Counter 1">
+                <input class="bl" type="number" min="0" step="1" max="99" placeholder="0">
             </div>
             <div>
                 <input type="text" placeholder="Counter 2">
-                <input type="number" min="0" step="1" placeholder="1234">
+                <input type="number" min="0" step="1" max="99" placeholder="0">
             </div>
             <div>
                 <input type="text" placeholder="Counter 3">
-                <input type="number" min="0" step="1" placeholder="1234">
+                <input type="number" min="0" step="1" max="99" placeholder="0">
             </div>
-            <!--<div>
-                <input type="text" placeholder="Counter 4">
-                <input type="number" min="0" step="1" placeholder="1234">
-            </div>-->
+            <div>
+                <input class="tr" type="text" placeholder="Counter 4">
+                <input class="br" type="number" min="0" step="1" placeholder="0">
+            </div>
         </div>
     </div>
 </div>
@@ -91,7 +91,7 @@
         <h1 id="res">8000</h1>
     </div>
     <div id="keyb">
-        <div>
+        <div id="numbs">
             <div>
                 <button onclick="calcApp(1)">1</button>
                 <button onclick="calcApp(2)">2</button>
@@ -110,7 +110,7 @@
             <div>
                 <button onclick="calcReset()">C</button>
                 <button onclick="calcApp(0)">0</button>
-                <button id="entr">Enter</button>
+                <button class="highlight" id="entr">E</button>
             </div>
         </div>
         <div id="opem">
