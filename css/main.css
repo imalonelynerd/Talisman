@@ -2,28 +2,42 @@
 
 @media only screen and (orientation: landscape) {
     body {
-        background: var(--bg) no-repeat center center;
-        background-size: cover;
-        overflow: hidden;
+        background: var(--bg);
+        margin: 0;
         color: var(--text-color);
         font-family: sans-serif;
-        margin: 0;
-        animation: Hewwo 1s;
+        animation: hewwo 1s;
     }
 
     #mainwindow {
         position: absolute;
-        top: 50%;
         left: 50%;
+        top: 50%;
         transform: translate(-50%,-50%);
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
+        align-items: center;
     }
 
-    #mainwindow > img {
+    #mainwindow > *:not(:last-of-type){
+        margin-bottom: 32px;
+    }
+
+    #title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #title > img {
         height: 128px;
+        margin: 0 0 2px;
+    }
+
+    #title > h1 {
+        margin: 4px;
     }
 
     #blocks {
@@ -31,77 +45,66 @@
         grid-auto-rows: 1fr;
         grid-template-columns: 1fr 1fr;
         gap: 32px;
-        background: var(--bg-color);
-        backdrop-filter: blur(10px);
-        padding: 32px;
-        border-radius: 32px;
     }
 
     #blocks > div {
         display: flex;
         flex-direction: column;
-        text-align: center;
+        justify-content: start;
         align-items: center;
-        justify-content: center;
+        width: 256px;
+        background: var(--bg-color);
+        backdrop-filter: blur(8px);
+        padding: 32px;
+        border-radius: 32px;
     }
 
-    #blocks > div > div {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #blocks > div > div:not(:last-of-type) {
+    #blocks > div > *:not(:last-of-type) {
         margin-bottom: 32px;
     }
 
     #blocks > div > p {
         font-size: 0.9em;
-        margin: 0 0 8px;
         opacity: 0.5;
+        margin: 0 0 8px !important;
     }
 
-    input, select, button {
-        padding: 1em;
-        font-size: 1em;
-        text-align: center;
-        color: var(--text-color);
-        border: none;
-        background: var(--input-color);
-        -webkit-appearance: textfield;
-        -moz-appearance: textfield;
-        transition: background 0.25s;
+    #blocks > div > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     }
 
-    button > img {
-        width: 16px;
+    #blocks > div > div > *:first-child {
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
     }
 
-    select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
+    #blocks > div > div > *:last-child {
+        border-bottom-left-radius: 24px;
+        border-bottom-right-radius: 24px;
     }
 
-    input:hover, select:hover, button:hover {
-        background: var(--input-hover-color);
+    #blocks > div > div > * {
+        width: 100%;
     }
 
-    #more, #less {
-        font-weight: bold;
-        flex-grow: 0;
+    #lifepoints > button {
+        padding: 8px 0 !important;
     }
 
     #buttons {
         display: flex;
         flex-direction: row !important;
-        align-items: center;
         justify-content: center;
+        align-items: center;
     }
 
     #buttons > * {
+        border-radius: 32px !important;
         display: flex;
-        flex-direction: row;
         align-items: center;
         justify-content: center;
     }
@@ -110,37 +113,13 @@
         margin-right: 8px;
     }
 
-    #lifepoints {
-        display: flex;
-        flex-direction: row !important;
+    #buttons > button > img {
+        width: 24px;
     }
 
-    #lifepoints > .first-elem {
-        border-radius: 16px 0 0 16px;
+    #timerconf, #nexusconf {
+        animation: hewwo 1s;
     }
 
-    #lifepoints > .last-elem {
-        border-radius: 0 16px 16px 0;
-    }
 
-    .first-elem {
-        border-radius: 16px 16px 0 0;
-    }
-
-    .last-elem {
-        border-radius: 0 0 16px 16px;
-    }
-
-    .round-elem {
-        border-radius: 32px;
-    }
-
-    .highlight {
-        background: var(--highlight-color);
-        transition: background 0.25s;
-    }
-
-    .highlight:hover {
-         background: var(--highlight-hover-color);
-    }
 }

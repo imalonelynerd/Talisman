@@ -14,23 +14,24 @@
 <body>
 <div id="parallax"></div>
 <div id="mainwindow">
-    <img src="im/icon_color.png">
-    <h1>Let's prepare the duel...</h1>
+    <div id="title">
+        <img src="im/icon_color.png">
+        <h1>Let's prepare the duel...</h1>
+    </div>
     <div id="blocks">
         <div>
             <p>Players's names</p>
             <div id="playersnames">
-                <input class="first-elem" type="text" id="pl1" placeholder="Player 1"/>
-                <input class="last-elem" type="text" id="pl2" placeholder="Player 2"/>
+                <input class="" type="text" id="pl1" placeholder="Player 1"/>
+                <input class="" type="text" id="pl2" placeholder="Player 2"/>
             </div>
             <p>Life Points (LP)</p>
             <div id="lifepoints">
-                <button class="first-elem" id="less" onclick="add(true)">-</button>
-                <input id="lp" type="number" value="8000" min="100" max="99999" step="1000" placeholder="ex° : 8000" required>
-                <button class="last-elem" id="more" onclick="add(false)">+</button>
+                <button class="bold" id="less" onclick="add(true)">-</button>
+                <input id="lp" type="number" value="8000" min="100" max="99999" step="1000" placeholder="8000" required>
+                <button class="bold" id="more" onclick="add(false)">+</button>
             </div>
         </div>
-
         <div>
             <p>Timer type</p>
             <div id="timer">
@@ -49,9 +50,9 @@
                 <input id="nexusbonus" class="last-elem" type="number" min="10" max="99999" step="1" placeholder="Added time">
             </div>
             <div id="buttons">
-                <button class="round-elem" onclick="savePreset()"><img src="im/tools/save.png"></button>
-                <button class="round-elem" onclick="startWPRestet()"><img src="im/tools/load.png"></button>
-                <button class="round-elem highlight" onclick="start()"><img src="im/tools/play2.png"></button>
+                <button class="" onclick="savePreset()"><img src="im/tools/save.png"></button>
+                <button class="" onclick="startWPRestet()"><img src="im/tools/load.png"></button>
+                <button class="highlight" onclick="start()"><img src="im/tools/play2.png"></button>
             </div>
         </div>
     </div>

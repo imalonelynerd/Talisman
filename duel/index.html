@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script>
         if (localStorage.getItem("duel") === null) {
-            window.location.href = "../";
+            /*window.location.href = "../";*/
         }
         localStorage.removeItem("duel");
     </script>
@@ -21,67 +21,41 @@
 <body>
 <div id="parallax"></div>
 <div id="mainwin">
-    <div id="players">
-        <div id="p1" onclick="updateLP(1)">
-            <h2 id="p1name">Player 1</h2>
-            <h1 id="p1lp">8000</h1>
-            <h3 id="p1time">170</h3>
-        </div>
-        <div id="p2" onclick="updateLP(2)">
-            <h2 id="p2name">Player 2</h2>
-            <h1 id="p2lp">8000</h1>
-            <h3 id="p2time">170</h3>
-        </div>
+    <div id="p1" onclick="updateLP(1)">
+        <h2 id="p1name">Player 1</h2>
+        <h1 id="p1lp">-</h1>
+        <h3 id="p1time">-</h3>
     </div>
-    <div id="tools">
-        <div id="timerd">
-            <div>
-                <h2 id="timer">999</h2>
-                <h3 id="timerm">16:36</h3>
-            </div>
-            <div id="timertools">
-                <button onclick="window.location.href = '../';">
-                    <img src="../im/tools/res.png" alt="Reset">
-                </button>
-                <button id="pause">
-                    <img src="../im/tools/play.png" alt="Play/Pause" id="pausei">
-                </button>
-                <button id="addt">
-                    <img src="../im/tools/add.png" alt="Add Time">
-                </button>
-                <button id="sw">
-                    <img src="../im/tools/sw.png" alt="Switch Player">
-                </button>
-            </div>
-        </div>
-        <div id="accessories">
-            <button class="first-elem" onclick="rollDice()" id="dicem">
-                <img id="dice" src="../im/tools/d.png" alt="dice">
-                <p id="dicet" class="tag">Click to roll</p>
-            </button>
-            <button class="last-elem" onclick="tossCoin()" id="coinm">
-                <img id="coin" src="../im/tools/c.png" alt="coin">
-                <p id="coint" class="tag">Click to toss</p>
-            </button>
-        </div>
-        <div id="notebook">
-            <div>
-                <input class="tl" type="text" placeholder="Counter 1">
-                <input class="bl" type="number" min="0" step="1" max="99" placeholder="0">
-            </div>
-            <div>
-                <input type="text" placeholder="Counter 2">
-                <input type="number" min="0" step="1" max="99" placeholder="0">
-            </div>
-            <div>
-                <input type="text" placeholder="Counter 3">
-                <input type="number" min="0" step="1" max="99" placeholder="0">
-            </div>
-            <div>
-                <input class="tr" type="text" placeholder="Counter 4">
-                <input class="br" type="number" min="0" step="1" placeholder="0">
-            </div>
-        </div>
+    <div id="p2" onclick="updateLP(2)">
+        <h2 id="p2name">Player 2</h2>
+        <h1 id="p2lp">-</h1>
+        <h3 id="p2time">-</h3>
+    </div>
+    <div id="timerd">
+            <h2 id="timer">-</h2>
+            <h3 id="timerm">-</h3>
+    </div>
+    <div id="timertools">
+        <button onclick="window.location.href = '../';">
+            <img src="../im/tools/res.png" alt="Reset">
+        </button>
+        <button id="pause">
+            <img src="../im/tools/play.png" alt="Play/Pause" id="pausei">
+        </button>
+        <button id="addt">
+            <img src="../im/tools/add.png" alt="Add Time">
+        </button>
+        <button id="sw">
+            <img src="../im/tools/sw.png" alt="Switch Player">
+        </button>
+    </div>
+    <div class="first-elem" onclick="rollDice()" id="dicem">
+        <img id="dice" src="../im/tools/d.png" alt="dice">
+        <p id="dicet" class="tag">Click to roll</p>
+    </div>
+    <div class="last-elem" onclick="tossCoin()" id="coinm">
+        <img id="coin" src="../im/tools/c.png" alt="coin">
+        <p id="coint" class="tag">Click to toss</p>
     </div>
 </div>
 <div id="calc">
@@ -93,34 +67,22 @@
         <h1 id="res">8000</h1>
     </div>
     <div id="keyb">
-        <div id="numbs">
-            <div>
-                <button onclick="calcApp(1)">1</button>
-                <button onclick="calcApp(2)">2</button>
-                <button onclick="calcApp(3)">3</button>
-            </div>
-            <div>
-                <button onclick="calcApp(4)">4</button>
-                <button onclick="calcApp(5)">5</button>
-                <button onclick="calcApp(6)">6</button>
-            </div>
-            <div>
-                <button onclick="calcApp(7)">7</button>
-                <button onclick="calcApp(8)">8</button>
-                <button onclick="calcApp(9)">9</button>
-            </div>
-            <div>
-                <button onclick="calcReset()">C</button>
-                <button onclick="calcApp(0)">0</button>
-                <button class="highlight" id="entr">E</button>
-            </div>
-        </div>
-        <div id="opem">
-            <button onclick="calcOpe(1)">+</button>
-            <button onclick="calcOpe(2)">-</button>
-            <button onclick="calcOpe(3)">*</button>
-            <button onclick="calcOpe(4)">/</button>
-        </div>
+        <button onclick="calcApp(1)">1</button>
+        <button onclick="calcApp(2)">2</button>
+        <button onclick="calcApp(3)">3</button>
+        <button onclick="calcOpe(1)">+</button>
+        <button onclick="calcApp(4)">4</button>
+        <button onclick="calcApp(5)">5</button>
+        <button onclick="calcApp(6)">6</button>
+        <button onclick="calcOpe(2)">-</button>
+        <button onclick="calcApp(7)">7</button>
+        <button onclick="calcApp(8)">8</button>
+        <button onclick="calcApp(9)">9</button>
+        <button onclick="calcOpe(3)">*</button>
+        <button onclick="calcReset()">C</button>
+        <button onclick="calcApp(0)">0</button>
+        <button class="highlight" id="entr">E</button>
+        <button onclick="calcOpe(4)">/</button>
     </div>
 </div>
 </body>

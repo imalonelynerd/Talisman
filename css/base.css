@@ -30,16 +30,16 @@
     }
 }
 
-@media only screen and (max-width: 768px), (orientation: portrait) {
+@media only screen and (orientation: portrait) {
     #parallax {
         display: none;
     }
 }
 
-@media only screen and (min-width: 769px) and (orientation: landscape) {
+@media only screen and (orientation: landscape) {
     #parallax {
-        position: relative;
-        width: 100%;
+        position: fixed;
+        width: 100vw;
         height: 100vh;
         background-image: url("../im/bg.jpg");
         background-repeat: no-repeat;
@@ -48,4 +48,44 @@
         /*background-position: 50% 50%;*/
         z-index: 0;
     }
+}
+
+.bold {
+    font-weight: bold;
+}
+
+*:focus {
+    z-index: 5;
+}
+
+.highlight {
+    background: var(--highlight-color);
+    transition: all 0.25s;
+}
+
+.highlight:hover {
+    background: var(--highlight-hover-color);
+}
+
+button, input, select {
+    padding: 16px 0;
+    background: var(--input-color);
+    border: none;
+    text-align: center;
+    color: var(--text-color);
+    transition: all 0.25s;
+}
+
+input[type=number] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover, input:hover, select:hover {
+    background: var(--input-hover-color);
 }
