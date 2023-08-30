@@ -1,12 +1,12 @@
 :root[data-theme="theme-dark"] {
-    --bg: url("../im/bg.jpg");
+    --bg: #000000;
     --text-color: #FFFFFF;
-    --bg-color: #000f1e;
-    --bg-hover-color: #00325b;
-    --input-color: #001d3a;
-    --input-hover-color: #00325b;
-    --highlight-color: #002850;
-    --highlight-hover-color: #0066ff;
+    --bg-color: #171b25A0;
+    --bg-hover-color: #262d3c;
+    --input-color: #262d3c;
+    --input-hover-color: #142a50;
+    --highlight-color: #004397;
+    --highlight-hover-color: #538bfe;
 }
 
 :root[data-theme="theme-light"] {
