@@ -27,9 +27,9 @@
             </div>
             <p>Life Points (LP)</p>
             <div id="lifepoints">
-                <button class="bold" id="less" onclick="add(true)">-</button>
-                <input id="lp" type="number" value="8000" min="100" max="99999" step="1000" placeholder="8000" required>
                 <button class="bold" id="more" onclick="add(false)">+</button>
+                <input id="lp" type="number" value="8000" min="100" max="99999" step="1000" placeholder="8000" required>
+                <button class="bold" id="less" onclick="add(true)">-</button>
             </div>
         </div>
         <div>
@@ -42,22 +42,23 @@
                 </select>
             </div>
             <div id="timerconf">
-                <input id="timertime" class="round-elem" type="number" min="10" max="99999" step="1" placeholder="Countdown">
+                <input id="timertime" class="round-elem" type="number" min="10" max="99999" step="1"
+                       placeholder="Countdown">
             </div>
             <div id="nexusconf">
                 <input id="nexustime" class="first-elem" type="number" min="10" max="99999" step="1"
                        placeholder="Player's time">
-                <input id="nexusbonus" class="last-elem" type="number" min="10" max="99999" step="1" placeholder="Added time">
+                <input id="nexusbonus" class="last-elem" type="number" min="10" max="99999" step="1"
+                       placeholder="Added time">
             </div>
             <div id="buttons">
-                <button class="" onclick="savePreset()"><img src="im/tools/save.png"></button>
-                <button class="" onclick="startWPRestet()"><img src="im/tools/load.png"></button>
-                <button class="highlight" onclick="start()"><img src="im/tools/play2.png"></button>
+                <button class="" title="Save a preset" onclick="savePreset()"><img src="im/tools/save.png"></button>
+                <button class="" title="Load a preset" onclick="startWPRestet()"><img src="im/tools/load.png"></button>
+                <button class="highlight" title="Start the duel" onclick="start()"><img src="im/tools/play2.png">
+                </button>
             </div>
         </div>
     </div>
-
-
 </div>
 </body>
 </html>
