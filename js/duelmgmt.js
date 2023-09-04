@@ -82,17 +82,18 @@ function chronometer() {
 function nexus() {
     let inter = setInterval(function () {
         let t = playerR === 1 ? p1t : p2t;
-        if (t === "0") {
+        if (t === 0) {
             let g = p1lp > p2lp ? 1 : 2;
             let opppl = g === 1 ? 2 : 1;
             loseCond($("#p" + g + "name").html(),
-                $("#p" + g + "lp").html(),
-                $("#p" + opppl + "lp").html(),
+                g === 1 ? p1lp:p2lp,
+                opppl === 1 ? p2lp:p1lp,
                 $("#timer").html(),
                 "Time out"
             );
         }
-        $("#p" + playerR + "time").html(t - 1);
+        t -= 1; // PB TIMER
+        $("#p" + playerR + "time").html(t);
     }, 1000);
     $("#p" + playerR + "time").css("background", "var(--highlight-hover-color)");
     let opppl = playerR === 1 ? 2 : 1
@@ -148,7 +149,7 @@ function calcOpe(id) {
 function calcUpdate() {
     switch (ope) {
         case 1:
-            res = val1 - val2;
+            res = 0 + val1 + val2;
             break;
         case 2:
             res = val1 - val2;
@@ -164,7 +165,7 @@ function calcUpdate() {
             }
             break;
     }
-    console.log(res)
+    //console.log(res)
     $("#res").html(res);
 }
 
