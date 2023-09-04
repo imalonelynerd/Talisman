@@ -51,64 +51,12 @@
     }
 
     #keyb {
-        display: flex;
-        flex-direction: row;
-        flex-grow: 1;
-        align-items: stretch;
-        justify-content: space-evenly;
+        display: grid;
+        grid-auto-rows: 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
-    #numbs {
-        flex-basis: 60%;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: space-evenly;
-        flex-grow: 1;
-    }
 
-    #numbs > div {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: space-evenly;
-    }
-
-    #opem {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: space-evenly;
-        flex-grow: 1;
-    }
-
-    #keyb button {
-        border-radius: 2vh;
-        flex-grow: 1;
-        font-size: 3vh;
-        font-weight: normal;
-    }
-
-    #opem > button:not(:last-of-type), #numbs button:not(#numbs > div:last-of-type > button) {
-        margin-bottom: 2vh;
-    }
-
-    #numbs button {
-        margin-right: 2vh;
-    }
-
-    #opem button, #entr {
-        font-weight: bold !important;
-    }
-
-    #opem button {
-        background: var(--input-hover-color);
-    }
-
-    #opem button:hover {
-        background: var(--highlight-hover-color);
-    }
 
     .highlight {
         background: var(--highlight-color);
