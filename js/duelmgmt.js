@@ -1,4 +1,4 @@
-let playerR = 1;
+// Functions
 
 function rollDice() {
     let resetDice = function () {
@@ -31,9 +31,9 @@ function tossCoin() {
 
 function updateLP(pl) {
     $("#mainwin").hide();
-    $("#baselp").html($("#p" + pl + "lp").html());
+    val1 = pl === 1 ? p1lp : p2lp;
+    $("#val1").html(val1);
     calcUpdate();
-    console.log("#p" + pl + "lp");
     $("#entr").attr("onclick", "calcApply(" + pl + ")");
     $("#calc").show();
 }
@@ -41,23 +41,21 @@ function updateLP(pl) {
 // noinspection JSUnusedGlobalSymbols
 function timer() {
     let inter = setInterval(function () {
-        let t = $("#timer").html();
-        if (t === "0") {
-            let pl1lp = $("#pl1lp").html();
-            let pl2lp = $("#pl2lp").html();
-            let g = pl1lp > pl2lp ? 1:2;
+        if (time === "0") {
+            let g = p1lp > p2lp ? 1 : 2;
             let opppl = g === 1 ? 2 : 1;
-            let timer = localStorage.getItem("timer");
+            let timerl = localStorage.getItem("timer");
             localStorage.removeItem("timer");
             loseCond($("#p" + g + "name").html(),
                 $("#p" + g + "lp").html(),
                 $("#p" + opppl + "lp").html(),
-                timer,
+                timerl,
                 "Time out"
             );
         }
-        $("#timer").html(t - 1);
-        $("#timerm").html(toClock(t - 1));
+        time = -1
+        $("#timer").html(time);
+        $("#timerm").html(toClock(time));
     }, 1000);
     $("#pausei").attr("src", "../im/tools/pause.png");
     $("#pause").attr("onclick", "pauseTimer(" + inter + ",'timer')");
@@ -73,9 +71,9 @@ function pauseTimer(id, func) {
 
 function chronometer() {
     let inter = setInterval(function () {
-        let t = $("#timer").html();
-        $("#timer").html(t - (-1));
-        $("#timerm").html(toClock(t - (-1)));
+        time += 1;
+        $("#timer").html(time);
+        $("#timerm").html(toClock(time));
     }, 1000);
     $("#pausei").attr("src", "../im/tools/pause.png");
     $("#pause").attr("onclick", "pauseTimer(" + inter + ",'chronometer')");
@@ -83,11 +81,9 @@ function chronometer() {
 
 function nexus() {
     let inter = setInterval(function () {
-        let t = $("#p" + playerR + "time").html();
+        let t = playerR === 1 ? p1t : p2t;
         if (t === "0") {
-            let pl1lp = $("#pl1lp").html();
-            let pl2lp = $("#pl2lp").html();
-            let g = pl1lp > pl2lp ? 1:2;
+            let g = p1lp > p2lp ? 1 : 2;
             let opppl = g === 1 ? 2 : 1;
             loseCond($("#p" + g + "name").html(),
                 $("#p" + g + "lp").html(),
@@ -103,13 +99,14 @@ function nexus() {
     $("#p" + opppl + "time").css("background", "var(--input-color)");
     $("#pausei").attr("src", "../im/tools/pause.png");
     $("#pause").attr("onclick", "pauseTimer(" + inter + ",'nexus')");
-    $("#sw").attr("onclick","switchPlayer()");
-    $("#addt").attr("onclick","addTime()")
+    $("#sw").attr("onclick", "switchPlayer()");
+    $("#addt").attr("onclick", "addTime()")
 }
 
 function addTime() {
-    let t = $("#p" + playerR + "time").html();
-    $("#p" + playerR + "time").html(t - (-duelConfObj.timer.bonus));
+    let t = playerR === 1 ? p1t : p2t;
+    t += duelConfObj.timer.bonus;
+    $("#p" + playerR + "time").html(t);
 }
 
 function switchPlayer() {
@@ -120,12 +117,12 @@ function switchPlayer() {
 }
 
 function calcApp(e) {
-    let s = $("#sub").html();
-    if (s === "0") {
-        $("#sub").html(e);
+    if (val2 === 0) {
+        val2 = e;
     } else {
-        $("#sub").html(s + e);
+        val2 = parseInt("" + val2 + e);
     }
+    $("#val2").html(val2);
     calcUpdate();
 }
 
@@ -144,59 +141,79 @@ function calcOpe(id) {
             $("#ope").html("/");
             break;
     }
+    ope = id;
     calcUpdate();
 }
 
 function calcUpdate() {
-    let a = parseInt($("#baselp").html());
-    let b = parseInt($("#sub").html());
-    switch ($("#ope").html()) {
-        case "+":
-            $("#res").html(a + b);
+    switch (ope) {
+        case 1:
+            res = val1 - val2;
             break;
-        case "-":
-            $("#res").html(a - b);
+        case 2:
+            res = val1 - val2;
             break;
-        case "*":
-            $("#res").html(a * b);
+        case 3:
+            res = val1 * val2;
             break;
-        case "/":
-            if (b === 0) {
-                $("#res").html(0);
+        case 4:
+            if (val2 === 0) {
+                res = 0
             } else {
-                $("#res").html(Math.floor(a / b));
+                res = Math.floor(val1 / val2);
             }
             break;
     }
+    console.log(res)
+    $("#res").html(res);
 }
 
 function calcReset() {
-    $("#sub").html("0");
+    val2 = 0;
+    $("#val2").html(val2);
     calcUpdate();
 }
 
 function calcApply(pl) {
-    $("#p" + pl + "lp").html($("#res").html());
-    if (parseInt($("#res").html()) <= 0) {
+    if (pl === 1) {
+        p1lp = res;
+        $("#p1lp").html(res);
+    } else {
+        p2lp = res;
+        $("#p2lp").html(res);
+    }
+    if (res <= 0) {
         let opppl = pl === 1 ? 2 : 1;
-        let timer = $("#timer").html();
-        if(localStorage.getItem("timer") !== null) {
-            timer = localStorage.getItem("timer");
+        let timerl = time;
+        if (localStorage.getItem("timer") !== null) {
+            timerl = localStorage.getItem("timer");
             localStorage.removeItem("timer");
-            timer -= $("#timer").html();
+            timerl -= time;
         }
         loseCond($("#p" + opppl + "name").html(),
-                $("#p" + opppl + "lp").html(),
-                $("#p" + pl + "lp").html(),
-                timer,
-                "K. O."
+            $("#p" + opppl + "lp").html(),
+            $("#p" + pl + "lp").html(),
+            timerl,
+            "K. O."
         );
     }
     $("#calc").hide();
     $("#mainwin").show();
-    $("#sub").html("0");
-    $("#ope").html("+");
+    calcReset();
+    calcOpe(2);
     calcUpdate();
+}
+
+function toClock(time) {
+    let mn = Math.floor(time / 60);
+    if (mn < 10) {
+        mn = "0" + mn;
+    }
+    let sc = time % 60;
+    if (sc < 10) {
+        sc = "0" + sc;
+    }
+    return mn + ':' + sc;
 }
 
 function loseCond(winner, lpw, lpl, time, reason) {
@@ -206,10 +223,89 @@ function loseCond(winner, lpw, lpl, time, reason) {
     win.lpl = lpl;
     win.time = time;
     win.reason = reason;
-    localStorage.setItem("win","base");
-    localStorage.setItem("winfo",JSON.stringify(win));
+    localStorage.setItem("win", "base");
+    localStorage.setItem("winfo", JSON.stringify(win));
     window.location.href = "../win";
     console.log(win);
     console.log(JSON.stringify((win)));
     return true;
+}
+
+function playerRound(pl) {
+    playerR = pl;
+    nexus();
+    time = 0;
+    $("#timer").html(time);
+    $("#timerm").html(toClock(time));
+    setInterval(function () {
+        time += 1;
+        $("#timer").html(time);
+        $("#timerm").html(toClock(time));
+    }, 1000);
+    $("#p1").attr("onclick", "updateLP(1)");
+    $("#p2").attr("onclick", "updateLP(2)");
+}
+
+// Global variables
+
+let playerR = 1;
+let time = 1;
+let p1lp = 1;
+let p2lp = 1;
+let p1t = 1;
+let p2t = 1;
+
+let val1 = 0;
+let ope = 0;
+let val2 = 0;
+let res = 0;
+
+let duelConf = localStorage.getItem("conf");
+localStorage.removeItem("conf");
+let duelConfObj = JSON.parse(duelConf);
+calcOpe(2);
+$("#calc").hide();
+
+$("#p1name").html(duelConfObj.pl1name);
+$("#p2name").html(duelConfObj.pl2name);
+p1lp = duelConfObj.lp;
+p2lp = duelConfObj.lp;
+$("#p1lp").html(p1lp);
+$("#p2lp").html(p2lp);
+
+$("#addt").hide();
+$("#sw").hide();
+$("#p1time").hide();
+$("#p2time").hide();
+
+switch (duelConfObj.timer.choice) {
+    case "1":
+        time = 0;
+        $("#timer").html(time);
+        $("#timerm").html(toClock(time));
+        $("#pause").attr("onclick", "chronometer()");
+        break;
+    case "2":
+        time = duelConfObj.timer.countdown;
+        $("#timer").html(time);
+        $("#timerm").html(toClock(time));
+        localStorage.setItem("timer", time);
+        $("#pause").attr("onclick", "timer()");
+        break;
+    case "3":
+        alert("Click on who should play first !");
+        $("#addt").show();
+        $("#sw").show();
+        $("#p1time").show();
+        $("#p2time").show();
+        $("#timer").html("-");
+        $("#timerm").html("-");
+        $("#pause").attr("onclick", "");
+        p1t = duelConfObj.timer.time;
+        p2t = duelConfObj.timer.time;
+        $("#p1time").html(p1t);
+        $("#p2time").html(p2t);
+        $("#p1").attr("onclick", "playerRound(1)");
+        $("#p2").attr("onclick", "playerRound(2)");
+        break;
 }
