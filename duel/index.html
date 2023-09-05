@@ -6,7 +6,7 @@
     <title>Duel - Talisman Web</title>
     <link rel="icon" href="../im/favicon.png">
     <link rel="stylesheet" href="../css/duel.css">
-    <script src="../js/darktheme.js"></script>
+    <script src="../js/darkTheme.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script>
         if (localStorage.getItem("duel") === null) {
@@ -14,18 +14,18 @@
         }
         localStorage.removeItem("duel");
     </script>
-    <script defer src="../js/duelmgmt.js"></script>
+    <script defer src="../js/duelFuncs.js"></script>
     <script defer src="../js/parallax.js"></script>
 </head>
 <body>
 <div id="parallax"></div>
 <div id="mainwin">
-    <div id="p1" onclick="updateLP(1)">
+    <div id="p1">
         <h2 id="p1name">Player 1</h2>
         <h1 id="p1lp">-</h1>
         <h3 id="p1time">-</h3>
     </div>
-    <div id="p2" onclick="updateLP(2)">
+    <div id="p2">
         <h2 id="p2name">Player 2</h2>
         <h1 id="p2lp">-</h1>
         <h3 id="p2time">-</h3>
@@ -52,11 +52,11 @@
         </div>
 
     </div>
-    <div class="first-elem" onclick="rollDice()" id="dicem">
+    <div class="first-elem" id="dicem">
         <img id="dice" src="../im/tools/d.png" alt="dice">
         <p id="dicet" class="tag">Click to roll</p>
     </div>
-    <div class="last-elem" onclick="tossCoin()" id="coinm">
+    <div class="last-elem" id="coinm">
         <img id="coin" src="../im/tools/c.png" alt="coin">
         <p id="coint" class="tag">Click to toss</p>
     </div>

@@ -3,19 +3,22 @@
 function rollDice() {
     let resetDice = function () {
         $("#dicet").html("Click to roll");
-        $("#dicem").attr("onclick", "rollDice()");
+        $("#dicem").click(rollDice);
+        return true;
     }
     let res = Math.floor(Math.random() * 6) + 1;
     $("#dice").attr("src", "../im/tools/d" + res + ".png");
     $("#dicet").html(res);
-    $("#dicem").attr("onclick", "");
+    $("#dicem").off("click");
     setTimeout(resetDice, 1000);
+    return true;
 }
 
 function tossCoin() {
     let resetCoin = function () {
         $("#coint").html("Click to toss");
-        $("#coinm").attr("onclick", "tossCoin()")
+        $("#coinm").click(tossCoin);
+        return true;
     }
     let res = Math.floor(Math.random() * 2);
     if (res === 0) {
@@ -25,20 +28,23 @@ function tossCoin() {
         $("#coin").attr("src", "../im/tools/ch.png");
         $("#coint").html("Head");
     }
-    $("#coinm").attr("onclick", "");
+    $("#coinm").off("onclick");
     setTimeout(resetCoin, 1000);
+    return true;
 }
 
-function updateLP(pl) {
+function updateLP(player) {
     $("#mainwin").hide();
-    val1 = pl === 1 ? p1lp : p2lp;
+    val1 = player === 1 ? p1lp : p2lp;
     $("#val1").html(val1);
     calcUpdate();
-    $("#entr").attr("onclick", "calcApply(" + pl + ")");
+    $("#entr").click(function () {
+        calcApply(player)
+    });
     $("#calc").show();
+    return true;
 }
 
-// noinspection JSUnusedGlobalSymbols
 function timer() {
     let inter = setInterval(function () {
         if (time === "0") {
@@ -53,20 +59,37 @@ function timer() {
                 "Time out"
             );
         }
-        time = -1
+        time -= 1;
         $("#timer").html(time);
         $("#timerm").html(toClock(time));
     }, 1000);
     $("#pausei").attr("src", "../im/tools/pause.png");
-    $("#pause").attr("onclick", "pauseTimer(" + inter + ",'timer')");
+    $("#pause").click(function () {
+        pauseTimer(inter, "timer")
+    });
+    return true;
 }
 
 function pauseTimer(id, func) {
     clearInterval(id);
     $("#pausei").attr("src", "../im/tools/play.png");
-    $("#pause").attr("onclick", func + "()");
+    let pause = $("#pause");
+    switch (func) {
+        case "chronometer":
+            pause.click(chronometer);
+            break;
+        case "timer":
+            pause.click(timer);
+            break;
+        case "nexus":
+            pause.click(nexus);
+            break;
+        default:
+            break;
+    }
     $("#p1time").css("background", "#404040");
     $("#p2time").css("background", "#404040");
+    return true;
 }
 
 function chronometer() {
@@ -76,7 +99,10 @@ function chronometer() {
         $("#timerm").html(toClock(time));
     }, 1000);
     $("#pausei").attr("src", "../im/tools/pause.png");
-    $("#pause").attr("onclick", "pauseTimer(" + inter + ",'chronometer')");
+    $("#pause").click(function () {
+        pauseTimer(inter, "chronometer")
+    });
+    return true;
 }
 
 function nexus() {
@@ -86,28 +112,42 @@ function nexus() {
             let g = p1lp > p2lp ? 1 : 2;
             let opppl = g === 1 ? 2 : 1;
             loseCond($("#p" + g + "name").html(),
-                g === 1 ? p1lp:p2lp,
-                opppl === 1 ? p2lp:p1lp,
+                g === 1 ? p1lp : p2lp,
+                opppl === 1 ? p2lp : p1lp,
                 $("#timer").html(),
                 "Time out"
             );
         }
-        t -= 1; // PB TIMER
+        t -= 1;
+        if (playerR === 1) {
+            p1t = t;
+        } else {
+            p2t = t;
+        }
         $("#p" + playerR + "time").html(t);
     }, 1000);
     $("#p" + playerR + "time").css("background", "var(--highlight-hover-color)");
     let opppl = playerR === 1 ? 2 : 1
     $("#p" + opppl + "time").css("background", "var(--input-color)");
     $("#pausei").attr("src", "../im/tools/pause.png");
-    $("#pause").attr("onclick", "pauseTimer(" + inter + ",'nexus')");
-    $("#sw").attr("onclick", "switchPlayer()");
-    $("#addt").attr("onclick", "addTime()")
+    $("#pause").click(function () {
+        pauseTimer(inter, "timer")
+    });
+    $("#sw").click(switchPlayer);
+    $("#addt").click(addTime);
+    return true;
 }
 
 function addTime() {
     let t = playerR === 1 ? p1t : p2t;
-    t += duelConfObj.timer.bonus;
+    if (playerR === 1) {
+        p1t += parseInt(duelConfObj.timer.bonus);
+    } else {
+        p2t += parseInt(duelConfObj.timer.bonus);
+    }
+    t += parseInt(duelConfObj.timer.bonus);
     $("#p" + playerR + "time").html(t);
+    return true;
 }
 
 function switchPlayer() {
@@ -115,6 +155,7 @@ function switchPlayer() {
     $("#p" + playerR + "time").css("background", "var(--highlight-hover-color)");
     let opppl = playerR === 1 ? 2 : 1
     $("#p" + opppl + "time").css("background", "var(--input-color)");
+    return true;
 }
 
 function calcApp(e) {
@@ -125,6 +166,7 @@ function calcApp(e) {
     }
     $("#val2").html(val2);
     calcUpdate();
+    return true;
 }
 
 function calcOpe(id) {
@@ -144,12 +186,13 @@ function calcOpe(id) {
     }
     ope = id;
     calcUpdate();
+    return true;
 }
 
 function calcUpdate() {
     switch (ope) {
         case 1:
-            res = 0 + val1 + val2;
+            res = parseInt(val1) + parseInt(val2);
             break;
         case 2:
             res = val1 - val2;
@@ -165,23 +208,30 @@ function calcUpdate() {
             }
             break;
     }
-    //console.log(res)
     $("#res").html(res);
+    return true;
 }
 
 function calcReset() {
     val2 = 0;
     $("#val2").html(val2);
     calcUpdate();
+    return true;
 }
 
 function calcApply(pl) {
-    if (pl === 1) {
-        p1lp = res;
-        $("#p1lp").html(res);
-    } else {
-        p2lp = res;
-        $("#p2lp").html(res);
+    switch (pl) {
+        case 1:
+            p1lp = res;
+            $("#p1lp").html(res);
+            break;
+        case 2:
+            p2lp = res;
+            $("#p2lp").html(res);
+            break;
+        default:
+            console.log(pl);
+            break;
     }
     if (res <= 0) {
         let opppl = pl === 1 ? 2 : 1;
@@ -198,11 +248,13 @@ function calcApply(pl) {
             "K. O."
         );
     }
+    $("#entr").off("click");
     $("#calc").hide();
     $("#mainwin").show();
     calcReset();
     calcOpe(2);
     calcUpdate();
+    return true;
 }
 
 function toClock(time) {
@@ -243,8 +295,13 @@ function playerRound(pl) {
         $("#timer").html(time);
         $("#timerm").html(toClock(time));
     }, 1000);
-    $("#p1").attr("onclick", "updateLP(1)");
-    $("#p2").attr("onclick", "updateLP(2)");
+    $("#p1").off("click").click(function () {
+        updateLP(1)
+    });
+    $("#p2").off("click").click(function () {
+        updateLP(2)
+    });
+    return true;
 }
 
 // Global variables
@@ -260,6 +317,8 @@ let val1 = 0;
 let ope = 0;
 let val2 = 0;
 let res = 0;
+
+// Setup
 
 let duelConf = localStorage.getItem("conf");
 localStorage.removeItem("conf");
@@ -279,19 +338,28 @@ $("#sw").hide();
 $("#p1time").hide();
 $("#p2time").hide();
 
+$("#p1").click(function () {
+    updateLP(1)
+});
+$("#p2").click(function () {
+    updateLP(2)
+});
+$("#dicem").click(rollDice);
+$("#coinm").click(tossCoin);
+
 switch (duelConfObj.timer.choice) {
     case "1":
         time = 0;
         $("#timer").html(time);
         $("#timerm").html(toClock(time));
-        $("#pause").attr("onclick", "chronometer()");
+        $("#pause").click(chronometer);
         break;
     case "2":
         time = duelConfObj.timer.countdown;
         $("#timer").html(time);
         $("#timerm").html(toClock(time));
         localStorage.setItem("timer", time);
-        $("#pause").attr("onclick", "timer()");
+        $("#pause").click(timer);
         break;
     case "3":
         alert("Click on who should play first !");
@@ -301,12 +369,16 @@ switch (duelConfObj.timer.choice) {
         $("#p2time").show();
         $("#timer").html("-");
         $("#timerm").html("-");
-        $("#pause").attr("onclick", "");
+        $("#pause").off("click");
         p1t = duelConfObj.timer.time;
         p2t = duelConfObj.timer.time;
         $("#p1time").html(p1t);
         $("#p2time").html(p2t);
-        $("#p1").attr("onclick", "playerRound(1)");
-        $("#p2").attr("onclick", "playerRound(2)");
+        $("#p1").off("click").click(function () {
+            playerRound(1)
+        });
+        $("#p2").off("click").click(function () {
+            playerRound(2)
+        });
         break;
 }
