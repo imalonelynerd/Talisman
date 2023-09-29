@@ -1,0 +1,51 @@
+:root[data-theme="theme-light"] {
+    --bg1: #ffffff;
+    --bg2: #f1eeff;
+    --bg3: #ffaa2c;
+    --text: #202020;
+    --text2: white;
+    --code: #00000020;
+    --effect: brightness(90%);
+    --bg-effect: brightness(100%);
+}
+
+:root[data-theme="theme-dark"] {
+    --bg1: #161321;
+    --bg2: #27233f;
+    --bg3: #E7A382;
+    --text: white;
+    --text2: #202020;
+    --code: #FFFFFF20;
+    --effect: brightness(125%);
+    --bg-effect: brightness(50%);
+}
+
+@keyframes slidein {
+    from {
+        transform: translateX(30%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes mslidein {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes Hewwo {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}

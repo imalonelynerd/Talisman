@@ -1,0 +1,41 @@
+@import "base.css";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg1);;
+    font-family: Inter, sans-serif;
+    color: var(--text);
+    animation: Hewwo ease-out 0.75s;
+    transition: all 0.25s;
+}
+
+a {
+    color: inherit !important;
+    text-decoration: none !important;
+    transition: all 0.25s ease-out;
+    cursor: pointer;
+}
+
+
+h1 {
+    margin: 0;
+}
+
+code {
+    padding: 8px 16px !important;
+    border-radius: 999px !important;
+    background: var(--code) !important;
+}
+
+a:hover {
+    filter: var(--effect);
+}
+
+@media only screen and (orientation: portrait) {
+    html {
+        font-size: 3vw;
+    }
+}
