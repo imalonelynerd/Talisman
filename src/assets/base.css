@@ -1,0 +1,84 @@
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #cad2f8;
+        --widget: #a9b7ff;
+        --hover: color-mix(in srgb, var(--widget), black 10%);
+        --imp: #7da6ff;
+        --imphover: color-mix(in srgb, var(--imp), black 10%);
+        --text: #202020;
+        --red: #ff2828;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #040923;
+        --widget: #091249;
+        --hover: color-mix(in srgb, var(--widget), white 10%);
+        --imp: #121e7c;
+        --imphover: color-mix(in srgb, var(--imp), white 10%);
+        --text: #FFFFFF;
+        --red: #FF8080;
+    }
+}
+
+
+@media only screen and (orientation: landscape) {
+    :root {
+        --shadow: 0px 4px 8px #00000020;
+        --radius: 16px;
+        --radius-button: 16px;
+        --radius-input: 16px;
+    }
+}
+
+@media only screen and (orientation: portrait) {
+    :root {
+        --shadow: 0px 0vw 0vw #00000000;
+        --radius: 4vw;
+        --radius-button: 4vw;
+        --radius-input: 4vw;
+    }
+}
+
+@keyframes FadeAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes SlideAnimation {
+    from {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes BgAnimation {
+    from {
+        background: transparent;
+    }
+
+    to {
+        background: color-mix(in srgb, var(--bg), transparent 50%);
+    }
+}
+
+@keyframes ParaAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

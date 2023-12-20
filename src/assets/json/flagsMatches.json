@@ -1,0 +1,142 @@
+{
+  "abro": {
+    "img": "abro.png",
+    "name": "Abrosexual"
+  },
+  "ace": {
+    "img": "ace.png",
+    "name": "Asexual"
+  },
+  "agender": {
+    "img": "agender.png",
+    "name": "Agender"
+  },
+  "akio": {
+    "img": "akio.png",
+    "name": "Akiosexual"
+  },
+  "aroace": {
+    "img": "aroace.png",
+    "name": "Aro - Ace"
+  },
+  "aro": {
+    "img": "aro.png",
+    "name": "Aromantic"
+  },
+  "auto": {
+    "img": "auto.png",
+    "name": "Autosexual"
+  },
+  "bigender": {
+    "img": "bigender.png",
+    "name": "Bigender"
+  },
+  "bi": {
+    "img": "bi.png",
+    "name": "Bisexual"
+  },
+  "biromantic": {
+    "img": "biromantic.png",
+    "name": "Biromantic"
+  },
+  "demiboy": {
+    "img": "demiboy.png",
+    "name": "Demiboy"
+  },
+  "demifae": {
+    "img": "demifae.png",
+    "name": "Demifae"
+  },
+  "demifaun": {
+    "img": "demifaun.png",
+    "name": "Demifaun"
+  },
+  "demigirl": {
+    "img": "demigirl.png",
+    "name": "Demigirl"
+  },
+  "demi": {
+    "img": "demi.png",
+    "name": "Demigender"
+  },
+  "fae": {
+    "img": "fae.png",
+    "name": "Genderfae"
+  },
+  "faun": {
+    "img": "faun.png",
+    "name": "Genderfaun"
+  },
+  "fluid": {
+    "img": "fluid.png",
+    "name": "Genderfluid"
+  },
+  "gay": {
+    "img": "gay.png",
+    "name": "Gay"
+  },
+  "grey": {
+    "img": "grey.png",
+    "name": "Greysexual"
+  },
+  "inter": {
+    "img": "inter.png",
+    "name": "Intergender"
+  },
+  "lesbian": {
+    "img": "lesbian.png",
+    "name": "Lesbian"
+  },
+  "nb": {
+    "img": "nb.png",
+    "name": "Non Binary"
+  },
+  "neutrois": {
+    "img": "neutrois.png",
+    "name": "Neutrois"
+  },
+  "omni": {
+    "img": "omni.png",
+    "name": "Omnisexual"
+  },
+  "omniromantical": {
+    "img": "omniromantical.png",
+    "name": "Omniromantical"
+  },
+  "pan": {
+    "img": "pan.png",
+    "name": "Pansexual"
+  },
+  "poly": {
+    "img": "poly.png",
+    "name": "Polyamorous"
+  },
+  "pride": {
+    "img": "pride.png",
+    "name": "LGBTQIA+"
+  },
+  "queer": {
+    "img": "queer.png",
+    "name": "Queer"
+  },
+  "transfem": {
+    "img": "transfem.png",
+    "name": "Transfeminine"
+  },
+  "transmasc": {
+    "img": "transmasc.png",
+    "name": "Transmasculine"
+  },
+  "trans": {
+    "img": "trans.png",
+    "name": "Transgender"
+  },
+  "test": {
+    "img": "test.png",
+    "name": "Widget"
+  },
+  "foo": {
+    "img": "unknown.png",
+    "name": "Bar"
+  }
+}

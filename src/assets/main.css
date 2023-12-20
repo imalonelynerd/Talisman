@@ -1,0 +1,37 @@
+@import "base.css";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    transition: all 0.25s;
+}
+
+body {
+    background: var(--bg);
+    font-family: "Montserrat", Inter, sans-serif;
+    color: var(--text);
+
+    background-attachment: fixed !important;
+    margin: 0;
+}
+
+a {
+    color: inherit !important;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+@media only screen and (orientation: landscape) {
+    html {
+        font-size: 0.9em;
+    }
+}
+
+@media only screen and (orientation: portrait) {
+    html {
+        font-size: 3vw;
+    }
+}

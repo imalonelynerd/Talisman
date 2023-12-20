@@ -1,0 +1,9 @@
+{
+  "errName": "Wooops...",
+  "imgSource": "/images/error.png",
+  "descriptions": {
+    "fetchError": "Check if either <b>hero.toml</b> or <b>pronounce.yml</b> is accessible from their Git !",
+    "missingData": "Some variables are unreferenced. If you're the author of this here, please fill them in !",
+    "unknownError": "I've... never seen this one coming... Please create an issue on GitHub..."
+  }
+}
