@@ -1,7 +1,6 @@
 <script setup>
 
 import WideButton from "@/components/Inputs/WideButton.vue";
-import {ref} from "vue";
 
 const props = defineProps([
   "time",
@@ -69,29 +68,29 @@ function pauseTimer() {
     <p>{{ timeToMMSS(timeo.t) }}</p>
     <div>
       <WideButton
-          @update:buttonClicked="$router.push('/')"
-          shown-title=""
           img-link="/icons/back.png"
+          shown-title=""
+          @update:buttonClicked="$router.push('/')"
       />
       <WideButton
           :is-disabled="type === '2'"
-          @update:buttonClicked="resetTimer()"
-          shown-title=""
           img-link="/icons/reset.png"
+          shown-title=""
+          @update:buttonClicked="resetTimer()"
       />
       <WideButton
-          :is-disabled="type === '2'"
-          @update:buttonClicked="timeo.running ? pauseTimer() : startTimer()"
-          shown-title=""
-          :is-important="type !== '2'"
           :img-link="timeo.running ? '/icons/pause.png' : '/icons/start.png'"
+          :is-disabled="type === '2'"
+          :is-important="type !== '2'"
+          shown-title=""
+          @update:buttonClicked="timeo.running ? pauseTimer() : startTimer()"
       />
     </div>
   </div>
 </template>
 
 <style scoped>
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .timer {
     padding: 24px;
     background: var(--bg);
@@ -115,6 +114,33 @@ function pauseTimer() {
     align-self: center;
     justify-content: center;
     gap: 8px;
+  }
+}
+
+@media screen and (hover: none) {
+  .timer {
+    padding: 6vw;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4vw;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .timer > * {
+    margin: 0;
+    text-align: center;
+  }
+
+  .timer > div {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+    gap: 2vw;
   }
 }
 </style>

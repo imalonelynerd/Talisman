@@ -233,7 +233,7 @@
         transition: background 0.25s;
     }
 
-    .highlight:hover {
+    .highlight:active {
         background: var(--highlight-hover-color);
     }
 

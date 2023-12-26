@@ -4,9 +4,10 @@ import WideButton from "@/components/Inputs/WideButton.vue";
 import {ref} from "vue";
 import NumberInput from "@/components/Inputs/NumberInput.vue";
 
-defineEmits([
+const emits = defineEmits([
   "update:calcClosed",
-  "update:valueUpdated"
+  "update:valueUpdated",
+  "update:calcOpened"
 ])
 
 const props = defineProps([
@@ -67,6 +68,8 @@ function changeOpe(oper) {
   ope.value = oper;
   computeOpe(props.ogValue, ope.value, nb2.value);
 }
+
+emits("update:calcOpened")
 </script>
 
 <template>
@@ -75,12 +78,12 @@ function changeOpe(oper) {
       <h2>{{ ogValue }}</h2>
       <h3>{{ opeMap[ope] }}</h3>
       <NumberInput
-          place-holder=""
           :custom-value="nb2"
-          :min-value="0"
           :max-value="999999"
-          :number-step="1"
+          :min-value="0"
           :no-numbers="true"
+          :number-step="1"
+          place-holder=""
           @update:valueUpdated="args => {nb2 = args; computeOpe(ogValue, ope, nb2)}"
       />
       <h3>=</h3>
@@ -88,29 +91,29 @@ function changeOpe(oper) {
     </div>
     <div class="opes">
       <WideButton
-          @update:buttonClicked="changeOpe(0)"
+          img-link=""
           shown-title="+"
-          img-link=""
+          @update:buttonClicked="changeOpe(0)"
       />
       <WideButton
-          @update:buttonClicked="changeOpe(1)"
+          img-link=""
           shown-title="-"
-          img-link=""
+          @update:buttonClicked="changeOpe(1)"
       />
       <WideButton
-          @update:buttonClicked="changeOpe(2)"
+          img-link=""
           shown-title="*"
-          img-link=""
+          @update:buttonClicked="changeOpe(2)"
       />
       <WideButton
-          @update:buttonClicked="changeOpe(3)"
+          img-link=""
           shown-title="/"
-          img-link=""
+          @update:buttonClicked="changeOpe(3)"
       />
       <WideButton
-          @update:buttonClicked="changeOpe(4)"
-          shown-title="→"
           img-link=""
+          shown-title="→"
+          @update:buttonClicked="changeOpe(4)"
       />
     </div>
     <div class="kb">
@@ -118,22 +121,22 @@ function changeOpe(oper) {
                   :shown-title="e" img-link=""
                   @update:buttonClicked="inputNumber(e)"/>
       <WideButton
-          @update:buttonClicked="removeNumber"
-          shown-title=""
           img-link="/icons/back.png"
+          shown-title=""
+          @update:buttonClicked="removeNumber"
       />
       <WideButton
-          @update:buttonClicked="inputNumber(0)"
-          shown-title="0"
           img-link=""
+          shown-title="0"
+          @update:buttonClicked="inputNumber(0)"
       />
       <WideButton
+          :is-important="true"
+          img-link="/icons/enter.png"
+          shown-title=""
           @update:buttonClicked="
               hist.push(`${ogValue} ${opeMap[ope]} ${nb2} = ${res}`);
               $emit('update:valueUpdated', res)"
-          shown-title=""
-          :is-important="true"
-          img-link="/icons/enter.png"
       />
     </div>
   </div>
@@ -143,7 +146,7 @@ function changeOpe(oper) {
 
 <style scoped>
 
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .calc-container {
     position: fixed;
     left: 0;
@@ -226,6 +229,93 @@ function changeOpe(oper) {
 
   .kb > * {
     padding: 28px 0;
+    font-size: 1.25em;
+  }
+}
+
+@media screen and (hover: none) {
+  .calc-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: color-mix(in srgb, var(--bg), transparent 50%);
+    z-index: 4;
+    animation: BgAnimation ease-out 0.25s;
+  }
+
+  .calc {
+    z-index: 5;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 6vw;
+    padding: 12vw;
+    background: var(--bg);
+    animation: SlideAnimation ease-out 0.25s;
+  }
+
+  .screen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+  }
+
+  .screen > * {
+    margin: 0;
+  }
+
+  .screen > h3 {
+    opacity: 0.5;
+  }
+
+  .screen > h2 {
+    font-size: 2em;
+    opacity: 0.75;
+  }
+
+  .screen > h1 {
+    font-size: 3em;
+  }
+
+  .nbinput {
+    width: 30vw;
+    overflow: hidden;
+  }
+
+  .opes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+    gap: 2vw;
+  }
+
+  .opes > * {
+    flex-grow: 1;
+  }
+
+  .kb {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+  }
+
+  .kb > * {
+    padding: 8vw 0;
     font-size: 1.25em;
   }
 }

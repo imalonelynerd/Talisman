@@ -25,7 +25,7 @@ const pass = ref({v: false});
 </script>
 
 <template>
-  <RouterView :setup="setup" :results="results" :canPass="pass"/>
+  <RouterView :canPass="pass" :results="results" :setup="setup"/>
 </template>
 
 <style scoped>

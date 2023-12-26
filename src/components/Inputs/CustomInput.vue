@@ -12,7 +12,7 @@ defineEmits(['update:valueUpdated']);
 </template>
 
 <style scoped>
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .phinput {
     padding: 16px 24px;
     border-radius: var(--radius-button);
@@ -29,7 +29,7 @@ defineEmits(['update:valueUpdated']);
   }
 }
 
-@media screen and (orientation: portrait) {
+@media screen and (hover: none) {
   .phinput {
     padding: 4vw 6vw;
     border-radius: var(--radius-button);
@@ -42,7 +42,7 @@ defineEmits(['update:valueUpdated']);
     text-align: center;
   }
 
-  .phinput:hover {
+  .phinput:active {
     background: var(--hover) !important;
   }
 }

@@ -1,5 +1,3 @@
-import {ref} from "vue";
-
 export function savePreset(obj) {
     let res = {
         pl1name: obj.p1name === "" ? "Player 1" : obj.p1name,

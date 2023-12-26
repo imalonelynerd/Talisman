@@ -1,7 +1,5 @@
 <script setup>
 
-import WideButton from "@/components/Inputs/WideButton.vue";
-
 defineProps([
   "number"
 ])
@@ -10,13 +8,13 @@ defineProps([
 
 <template>
   <div class="counter">
-    <input type="text" :placeholder="`Counter n°${number}`">
-    <input type="text" placeholder="0">
+    <input :placeholder="`Counter n°${number}`" type="text">
+    <input placeholder="0" type="text">
   </div>
 </template>
 
 <style scoped>
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .counter {
     display: flex;
     flex-direction: column;
@@ -47,4 +45,37 @@ defineProps([
     border-radius: 0 0 var(--radius) var(--radius);
   }
 }
+
+@media screen and (hover: none) {
+  .counter {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    box-shadow: var(--shadow);
+  }
+
+  .counter > input {
+    padding: 4vw;
+    border: none;
+    background: var(--widget);
+    color: var(--text);
+    text-align: center;
+    font-size: 1em;
+  }
+
+  .counter > input:active {
+    background: var(--hover);
+  }
+
+  .counter > input:first-of-type {
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .counter > input:last-of-type {
+    height: 2vh;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+}
+
 </style>

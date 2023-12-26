@@ -22,39 +22,17 @@ const calcShown = ref(false);
 </script>
 
 <template>
+  <Calculator v-if="calcShown"
+              :hist="hist"
+              :og-value="player.lps"
+              @update:calcOpened="hasTimer && isFocused ? player.timer -= (-addedTime) : ''"
+              @update:valueUpdated="args => {
+                player.lps = args ; calcShown = !calcShown;
+                if(args <= 0) {$emit('update:zeroLPS')}}"
+              @update:calcClosed="calcShown = !calcShown"
+  />
   <div class="plsh">
-    <div v-if="!histShown">
-      <h3>{{ player.name }}</h3>
-      <h1>{{ player.lps }}</h1>
-      <div>
-        <WideButton
-            @update:buttonClicked="calcShown = !calcShown"
-            :shown-title="hasTimer ? '' : 'Calculator'"
-            img-link="/icons/calc.png"
-        />
-        <WideButton
-            @update:buttonClicked="histShown = !histShown"
-            :shown-title="hasTimer ? '' : 'History'"
-            img-link="/icons/hist.png"
-        />
-        <WideButton
-            v-if="hasTimer"
-            @update:buttonClicked="$emit('update:playerSwitched')"
-            :is-disabled="!isFocused"
-            :is-important="isFocused"
-            :shown-title="player.timer"
-            img-link="/icons/timer.png"
-        />
-        <WideButton
-            @update:buttonClicked="player.timer += addedTime"
-            :is-disabled="!isFocused"
-            v-if="hasTimer"
-            :shown-title="`+${addedTime}s`"
-            img-link="/icons/add.png"
-        />
-      </div>
-    </div>
-    <div class="hist" v-if="histShown">
+    <div v-if="histShown" class="hist">
       <div>
         <p v-if="hist.length === 0">Empty</p>
         <p v-for="e in hist">
@@ -63,30 +41,53 @@ const calcShown = ref(false);
       </div>
       <div>
         <WideButton
-            @update:buttonClicked="hist = []"
-            shown-title="Clear"
             img-link="/icons/reset.png"
+            shown-title="Clear"
+            @update:buttonClicked="hist = []"
         />
         <WideButton
-            @update:buttonClicked="histShown = !histShown"
-            shown-title="Back"
             img-link="/icons/back.png"
+            shown-title="Back"
+            @update:buttonClicked="histShown = !histShown"
+        />
+      </div>
+    </div>
+    <div v-if="!histShown">
+      <h3>{{ player.name }}</h3>
+      <h1>{{ player.lps }}</h1>
+      <div>
+        <WideButton
+            :shown-title="hasTimer ? '' : 'Calculator'"
+            img-link="/icons/calc.png"
+            @update:buttonClicked="calcShown = !calcShown"
+        />
+        <WideButton
+            :shown-title="hasTimer ? '' : 'History'"
+            img-link="/icons/hist.png"
+            @update:buttonClicked="histShown = !histShown"
+        />
+        <WideButton
+            v-if="hasTimer"
+            :is-disabled="!isFocused"
+            :is-important="isFocused"
+            :shown-title="player.timer"
+            img-link="/icons/timer.png"
+            @update:buttonClicked="$emit('update:playerSwitched')"
+        />
+        <WideButton
+            v-if="hasTimer"
+            :is-disabled="!isFocused"
+            :shown-title="`+${addedTime}s`"
+            img-link="/icons/add.png"
+            @update:buttonClicked="player.timer -= (-addedTime)"
         />
       </div>
     </div>
   </div>
-  <Calculator v-if="calcShown"
-              :og-value="player.lps"
-              :hist="hist"
-              @update:valueUpdated="args => {
-                player.lps = args ; calcShown = !calcShown;
-                if(args <= 0) {$emit('update:zeroLPS')}}"
-              @update:calcClosed="calcShown = !calcShown"
-  />
 </template>
 
 <style scoped>
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .plsh {
     display: flex;
     flex-direction: row;
@@ -167,4 +168,97 @@ const calcShown = ref(false);
     gap: 8px;
   }
 }
+
+@media screen and (hover: none) {
+  .plsh {
+    padding: 6vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 6vw;
+    border-radius: var(--radius);
+    background: var(--bg);
+    box-shadow: var(--shadow);
+    flex-grow: 1;
+  }
+
+  .plsh > div:not(.hist) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4vw;
+    flex-grow: 1;
+  }
+
+  .plsh > div:not(.hist) > * {
+    margin: 0;
+  }
+
+  .plsh > div:not(.hist) > h3 {
+    opacity: 0.5;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .plsh > div:not(.hist) > h1 {
+    font-size: 4em;
+  }
+
+  .plsh > div:not(.hist) > div {
+    width: 100%;
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: 2vw;
+  }
+
+  .hist {
+    background: var(--bg);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12vw 6vw 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: start;
+    gap: 2vw;
+    z-index: 5;
+    animation: SlideAnimation ease-out 0.25s;
+  }
+
+  .hist > div:first-of-type {
+    flex-grow: 1;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+  }
+
+  .hist > div > * {
+    margin: 0;
+    text-align: center;
+  }
+
+  .hist > div:first-of-type > p {
+    font-size: 1.75em;
+  }
+
+  .hist > div:last-of-type {
+    align-self: end;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
 </style>

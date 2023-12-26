@@ -15,19 +15,19 @@ const ctrs = ref([1, 2, 3]);
     </div>
     <div>
       <wide-button
-          @update:buttonClicked="ctrs.push(ctrs.length + 1)"
+          img-link="/icons/add.png"
           shown-title=""
-          img-link="/icons/add.png"/>
+          @update:buttonClicked="ctrs.push(ctrs.length + 1)"/>
       <wide-button
-          @update:buttonClicked="ctrs.pop()"
+          img-link="/icons/remove.png"
           shown-title=""
-          img-link="/icons/remove.png"/>
+          @update:buttonClicked="ctrs.length !== 0 ? ctrs.pop(): ''"/>
     </div>
   </div>
 </template>
 
 <style scoped>
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .counters {
     padding: 24px;
     background: var(--bg);
@@ -59,4 +59,41 @@ const ctrs = ref([1, 2, 3]);
     gap: 8px;
   }
 }
+
+@media screen and (hover: none) {
+  .counters {
+    padding: 6vw;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+    justify-content: center;
+    gap: 4vw;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .counters > div:first-of-type {
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: start;
+    gap: 8px;
+    border-radius: var(--radius);
+  }
+
+  .counters > div:last-of-type {
+    display: flex;
+    flex-direction: row;
+    align-self: stretch;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .counters > div:last-of-type > * {
+    flex-grow: 1;
+  }
+}
+
 </style>

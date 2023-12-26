@@ -18,7 +18,7 @@ defineEmits(['update:value1Updated', 'update:value2Updated']);
 </template>
 
 <style scoped>
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .dbinput {
     display: flex;
     flex-direction: row;
@@ -42,6 +42,34 @@ defineEmits(['update:value1Updated', 'update:value2Updated']);
   }
 
   .dbinput > input:hover {
+    background: var(--hover) !important;
+  }
+}
+
+@media screen and (hover: none) {
+  .dbinput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+    border-radius: var(--radius-button);
+    background: var(--widget);
+    box-shadow: var(--shadow);
+  }
+
+  .dbinput > input {
+    text-align: center;
+    width: 66%;
+    padding: 4vw 6vw;
+    border: none;
+    font-size: 1em;
+    color: var(--text);
+    flex: 1 1;
+    border-radius: var(--radius-button);
+    background: transparent;
+  }
+
+  .dbinput > input:active {
     background: var(--hover) !important;
   }
 }

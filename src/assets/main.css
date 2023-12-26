@@ -24,13 +24,13 @@ a {
     cursor: pointer;
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (hover: hover) {
     html {
         font-size: 0.9em;
     }
 }
 
-@media only screen and (orientation: portrait) {
+@media only screen and (hover: none) {
     html {
         font-size: 3vw;
     }

@@ -55,14 +55,14 @@ props.canPass.v = false;
       </div>
     </div>
     <WideButton
-        @update:buttonClicked="$router.push('/')"
+        img-link="/icons/back.png"
         shown-title="Restart"
-        img-link="/icons/back.png"/>
+        @update:buttonClicked="$router.push('/')"/>
   </div>
 </template>
 
 <style scoped>
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .results {
     position: fixed;
     padding: 64px 0;
@@ -149,4 +149,92 @@ props.canPass.v = false;
     height: 32px;
   }
 }
+
+@media screen and (hover: none) {
+  .results {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 24vw 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 12vw;
+    overflow: scroll;
+    animation: FadeAnimation ease-out 1s;
+  }
+
+  .results > div:nth-of-type(1) {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    gap: 4vw;
+  }
+
+  .results > div:nth-child(1) > * {
+    margin: 0;
+  }
+
+  .results > div:nth-of-type(1) > h1 {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .results > div:nth-child(1) > img {
+    height: 40vw;
+    width: 40vw;
+    margin: 0 auto;
+  }
+
+  .results > div:nth-of-type(2) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 4vw;
+  }
+
+  .results > div:nth-of-type(2) > div {
+    background: var(--widget);
+    padding: 6vw;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    gap: 2vw;
+    box-shadow: var(--shadow);
+  }
+
+  .results > div:nth-of-type(2) > div:active {
+    background: var(--hover);
+  }
+
+  .results > div:nth-of-type(2) > div > * {
+    margin: 0;
+  }
+
+  .results > div:nth-of-type(2) > div > p {
+    opacity: 0.5;
+  }
+
+  .results > div:nth-of-type(2) > div > h1 {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .results > div:nth-of-type(2) > div > img {
+    height: 10vw;
+  }
+}
+
 </style>

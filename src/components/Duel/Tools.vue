@@ -68,7 +68,7 @@ function tossCoin() {
 </template>
 
 <style scoped>
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .tools {
     padding: 24px;
     background: var(--bg);
@@ -109,6 +109,51 @@ function tossCoin() {
 
   .tools > div > img {
     height: 48px;
+  }
+}
+
+@media screen and (hover: none) {
+  .tools {
+    padding: 6vw;
+    background: var(--bg);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+    gap: 4vw;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .tools > div {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    justify-content: center;
+    gap: 2vw;
+    background: var(--widget);
+    border-radius: var(--radius-button);
+    box-shadow: var(--shadow);
+    padding: 4vw 0;
+  }
+
+  .tools > div:active {
+    background: var(--hover);
+  }
+
+  .tools > div > * {
+    margin: 0 auto;
+    font-weight: bold;
+  }
+
+  .tools > div > p {
+    width: 30vw;
+    text-align: center;
+  }
+
+  .tools > div > img {
+    height: 14vw;
   }
 }
 </style>

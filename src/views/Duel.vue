@@ -52,7 +52,7 @@ switch (props.setup.timertype) {
 }
 
 const timeo = ref({
-  t: props.setup.type === "2" ? "---" : time.value,
+  t: props.setup.timertype === "2" ? "---" : time.value,
   running: false,
   stop: -1
 });
@@ -61,8 +61,8 @@ function nexus() {
   playerTurn.value.stop = setInterval(function () {
     let p = playerTurn.value.turn === 1 ? p1 : p2;
     let t = p.value.timer;
-    if (t === "0") {
-      winAnnouncement(p1, p2, 'Time out !', "---");
+    if (t === 0) {
+      winAnnouncement(p1.value, p2.value, 'Time out !', "---");
     }
     p.value.timer -= 1;
   }, 1000);
@@ -74,18 +74,28 @@ function switchPlayer() {
   nexus();
 }
 
-function winAnnouncement(p1, p2, reason, timer) {
-  console.log(p1, p2, reason, timer);
+function winAnnouncement(p1, p2, reason) {
+  /*console.log(p1, p2, reason, timer);*/
   let winner = p1.lps === p2.lps ? null : (p1.lps > p2.lps ? p1 : p2);
   let loser = winner === null ? null : winner === p1 ? p2 : p1;
   props.results.winner = winner === null ? "Tie" : winner.name;
   props.results.reason = reason;
   let wlps = winner === null ? p1.lps : winner.lps;
-  let llps = winner === null ? p1.lps : loser.lps
+  let llps = winner === null ? p1.lps : loser.lps;
   props.results.wlps = wlps;
   props.results.llps = llps;
-  props.results.ratio = llps === 0 ? '∞' : wlps / llps;
-  props.results.timer = timer;
+  props.results.ratio = llps === 0 ? '∞' : Number((wlps / llps).toFixed(3));
+  switch (props.setup.timertype) {
+    case "0":
+      props.results.timer = timeo.value.t;
+      break;
+    case "1":
+      props.results.timer = time.value - timeo.value.t;
+      break;
+    default:
+      props.results.timer = "---";
+      break;
+  }
   props.canPass.v = true;
   router.push('/results');
 }
@@ -96,27 +106,27 @@ function winAnnouncement(p1, p2, reason, timer) {
   <Parallax bg-img="/images/bg.jpg"/>
   <Choice
       v-if="choiceShown"
-      @update:p1="choiceShown = !choiceShown; playerTurn.turn = 1; nexus()"
-      @update:p2="choiceShown = !choiceShown; playerTurn.turn = 2; nexus()"
       :p1name="p1.name"
-      :p2name="p2.name"/>
+      :p2name="p2.name"
+      @update:p1="choiceShown = !choiceShown; playerTurn.turn = 1; nexus()"
+      @update:p2="choiceShown = !choiceShown; playerTurn.turn = 2; nexus()"/>
   <div class="duel">
     <div>
       <PlayerSheet
-          :player="p1"
-          :has-timer="setup.timertype === '2'"
           :added-time="setup.atime"
+          :has-timer="setup.timertype === '2'"
           :is-focused="playerTurn.turn === 1"
+          :player="p1"
           @update:playerSwitched="switchPlayer()"
-          @update:zeroLPS="winAnnouncement(p1, p2, 'K.O !', setup.timertype === '0' ? timeo.t : time - timeo.t)"
+          @update:zeroLPS="winAnnouncement(p1, p2, 'K.O !')"
       />
       <PlayerSheet
-          :player="p2"
-          :has-timer="setup.timertype === '2'"
           :added-time="setup.atime"
+          :has-timer="setup.timertype === '2'"
           :is-focused="playerTurn.turn === 2"
+          :player="p2"
           @update:playerSwitched="switchPlayer()"
-          @update:zeroLPS="winAnnouncement(p1, p2, 'K.O !', setup.timertype === '0' ? timeo.t : time - timeo.t)"
+          @update:zeroLPS="winAnnouncement(p1, p2, 'K.O !')"
       />
     </div>
     <div>
@@ -124,7 +134,7 @@ function winAnnouncement(p1, p2, reason, timer) {
           :time="time"
           :timeo="timeo"
           :type="setup.timertype"
-          @update:timerEnded="winAnnouncement(p1, p2, 'Time out !', setup.countdown)"
+          @update:timerEnded="winAnnouncement(p1, p2, 'Time out !')"
       />
       <Tools/>
       <Counters/>
@@ -134,7 +144,7 @@ function winAnnouncement(p1, p2, reason, timer) {
 
 <style scoped>
 
-@media screen and (orientation: landscape) {
+@media screen and (hover: hover) {
   .duel {
     position: fixed;
     top: 0;
@@ -179,5 +189,32 @@ function winAnnouncement(p1, p2, reason, timer) {
     flex-grow: 1;
   }
 }
+
+@media screen and (hover: none) {
+  .duel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 6vw;
+    overflow: scroll;
+    animation: FadeAnimation ease-out 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: start;
+    gap: 6vw;
+  }
+
+  .duel > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 6vw;
+  }
+}
+
 
 </style>
